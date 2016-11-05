@@ -18,9 +18,16 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "assets/plugins/bootstrap/css/bootstrap.min.css",
+        "assets/css/essentials.css",
+        "assets/css/layout.css",
+        "assets/css/header-1.css",
+        "assets/css/color_scheme/darkBlue.css",
         "styles.css"
       ],
       "scripts": [
+        "assets/plugins/jquery/jquery-2.2.3.min.js",
+        "assets/js/scripts.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

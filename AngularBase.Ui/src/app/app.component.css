@@ -1,0 +1,5 @@
+/*Smarty Theme Overrides*/
+
+#footer ul.footer-posts>li {
+  padding: 8px 0;
+}
