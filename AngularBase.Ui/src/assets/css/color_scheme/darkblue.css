@@ -1,13 +1,13 @@
-/** Dark Blue #1980B6
+/** Dark Blue #1980B6 originally
  **************************************************************** **/
 	::selection {
-		background: #1980B6;
+		background: darkblue;
 	}
 	::-moz-selection {
-		background: #1980B6; /* Firefox */
+		background: darkblue; /* Firefox */
 	}
 	::-webkit-selection {
-		background: #1980B6; /* Safari */
+		background: darkblue; /* Safari */
 	}
 
 
@@ -21,8 +21,8 @@
 	h4 > span,
 	h5 > span,
 	h6 > span,
-	.pagination>li>a, 
-	.pagination>li>a:hover, 
+	.pagination>li>a,
+	.pagination>li>a:hover,
 	.pagination>li>span,
 	ul.list-links>li>a:hover,
 	#sidepanel ul li a[data-toggle="collapse"],
@@ -39,11 +39,11 @@
 	#page-menu.page-menu-dark ul>li.active>a>i,
 	#page-menu.page-menu-transparent ul>li.active>a>i,
 	.tp-caption.block_white,
-	section span.theme-color, 
-	section em.theme-color, 
-	section i.theme-color, 
-	section b.theme-color, 
-	section div.theme-color, 
+	section span.theme-color,
+	section em.theme-color,
+	section i.theme-color,
+	section b.theme-color,
+	section div.theme-color,
 	section p.theme-color,
 	.owl-carousel.featured a.figure>span>i,
 	.owl-carousel.featured a:hover,
@@ -73,10 +73,10 @@
 	.price-clean-popular h4,
 	.box-icon.box-icon-color i,
 	.switch-primary.switch-round > input:checked + .switch-label:after,
-	section.dark .nav-tabs.nav-clean>li.active>a { 
-		color: #1980B6; 
+	section.dark .nav-tabs.nav-clean>li.active>a {
+		color: #1980B6;
 	}
-	
+
 	#sidepanel.sidepanel-theme-color,
 	div.alert.alert-theme-color,
 	div.alert.alert-primary,
@@ -120,7 +120,7 @@
 	#page-menu ul {
 		background-color:#1980B6;
 	}
-	
+
 	/* !important required */
 	#music-player .mejs-controls .mejs-time-rail .mejs-time-current,
 	#music-player .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
@@ -129,7 +129,7 @@
 		background-color:#1980B6 !important;
 	}
 	.inews-content-inner h3>a,
-	div.side-nav ul>li:hover>a, 
+	div.side-nav ul>li:hover>a,
 	div.side-nav ul>li.active>a,
 	.pagination.pagination-simple>li.active>a,
 	div.side-nav ul.list-group-bordered>li>a:hover,
@@ -139,7 +139,7 @@
 
 	.primary-slider .ui-slider .ui-slider-handle,
 	.switch.switch-primary > input:checked + .switch-label,
-	.timeline_center li h3:before, 
+	.timeline_center li h3:before,
 	.timeline_center:after,
 	a.thumbnail.active,
 	a.thumbnail:hover,
@@ -193,11 +193,11 @@
 	#topNav div.submenu-color ul.dropdown-menu a.dropdown-toggle {
 		background-image: url('../../images/submenu_light.png');
 	}
-	#topNav div.submenu-color ul.dropdown-menu li.active>a, 
-	#topNav div.submenu-color ul.dropdown-menu li.active:hover>a, 
-	#topNav div.submenu-color ul.dropdown-menu li.active:focus>a, 
-	#topNav div.submenu-color ul.dropdown-menu li:hover>a, 
-	#topNav div.submenu-color ul.dropdown-menu li:focus>a, 
+	#topNav div.submenu-color ul.dropdown-menu li.active>a,
+	#topNav div.submenu-color ul.dropdown-menu li.active:hover>a,
+	#topNav div.submenu-color ul.dropdown-menu li.active:focus>a,
+	#topNav div.submenu-color ul.dropdown-menu li:hover>a,
+	#topNav div.submenu-color ul.dropdown-menu li:focus>a,
 	#topNav div.submenu-color ul.dropdown-menu li:focus>a {
 		color:#fff;
 		background-color:rgba(0,0,0,0.15);
@@ -211,11 +211,11 @@
 	#topNav div.submenu-color #topMain>li.mega-menu div.row div>ul>li>span {
 		color:#fff;
 	}
-	#topNav div.submenu-color #topMain>li.mega-menu div.row div { 
+	#topNav div.submenu-color #topMain>li.mega-menu div.row div {
 		border-left: rgba(0,0,0,0.2) 1px solid;
 	}
 
-	
+
 	/* Theme Color Section */
 	section.theme-color,
 	section.theme-color div.heading-title.heading-dotted h1,
@@ -227,19 +227,19 @@
 		color:#fff;
 		background-color: #1980B6;
 	}
-	section.theme-color div.heading-title h1, 
-	section.theme-color div.heading-title h2, 
-	section.theme-color div.heading-title h3, 
-	section.theme-color div.heading-title h4, 
-	section.theme-color div.heading-title h5, 
+	section.theme-color div.heading-title h1,
+	section.theme-color div.heading-title h2,
+	section.theme-color div.heading-title h3,
+	section.theme-color div.heading-title h4,
+	section.theme-color div.heading-title h5,
 	section.theme-color div.heading-title h6 {
 		background-color: #1980B6;
 	}
-	section.theme-color div.heading-title h1 span, 
-	section.theme-color div.heading-title h2 span, 
-	section.theme-color div.heading-title h3 span, 
-	section.theme-color div.heading-title h4 span, 
-	section.theme-color div.heading-title h5 span, 
+	section.theme-color div.heading-title h1 span,
+	section.theme-color div.heading-title h2 span,
+	section.theme-color div.heading-title h3 span,
+	section.theme-color div.heading-title h4 span,
+	section.theme-color div.heading-title h5 span,
 	section.theme-color div.heading-title h6 span {
 		color:#fff;
 	}
@@ -263,8 +263,8 @@
 /**	Vertical Menu
 *************************************************** **/
 body.menu-vertical #mainMenu.sidebar-vertical .sidebar-nav .navbar li:hover>a,
-body.menu-vertical #mainMenu.sidebar-vertical .dropdown-menu>.active>a, 
-body.menu-vertical #mainMenu.sidebar-vertical .dropdown-menu>.active>a:focus, 
+body.menu-vertical #mainMenu.sidebar-vertical .dropdown-menu>.active>a,
+body.menu-vertical #mainMenu.sidebar-vertical .dropdown-menu>.active>a:focus,
 body.menu-vertical #mainMenu.sidebar-vertical .dropdown-menu>.active>a:hover,
 body.menu-vertical #mainMenu.sidebar-vertical .navbar-default .navbar-nav>.active>a,
 body.menu-vertical #mainMenu.sidebar-vertical .sidebar-nav .navbar li:hover>a {
@@ -286,11 +286,11 @@ section.dark .btn-default:hover {
 /**	[Shortcode] Page Header
 *************************************************** **/
 	section.page-header .breadcrumb a:hover  {
-		color: #1980B6 !important; 
+		color: #1980B6 !important;
 		text-decoration:none;
 	}
-	
-	
+
+
 /**	[Shortcode] Dividers
 *************************************************** **/
 	div.divider.divider-color i {
@@ -418,14 +418,14 @@ ul.process-steps li.active h6 {
 
 /** [Shortcode] Process Steps
 *************************************************** **/
-div.mega-price-table .pricing-title, 
-div.mega-price-table .pricing-head, 
+div.mega-price-table .pricing-title,
+div.mega-price-table .pricing-head,
 div.mega-price-table .pricing.popular {
 	background-color:#1980B6;
 }
 
 
-div.mega-price-table .pricing:hover h4, 
+div.mega-price-table .pricing:hover h4,
 div.mega-price-table .pricing-table i.fa {
 	color:#1980B6;
 }
@@ -466,7 +466,7 @@ i.ico-hover:hover {
 /* normal state */
 /**/
 .sky-form .toggle i:before {
-	background-color: #1980B6;	
+	background-color: #1980B6;
 }
 .sky-form .button {
 	background-color: #1980B6;
@@ -477,7 +477,7 @@ i.ico-hover:hover {
 /* checked state */
 /**/
 .sky-form .radio input + i:after {
-	background-color: #1980B6;	
+	background-color: #1980B6;
 }
 .sky-form .checkbox input + i:after {
 	color: #1980B6;
@@ -485,10 +485,10 @@ i.ico-hover:hover {
 .sky-form .radio input:checked + i,
 .sky-form .checkbox input:checked + i,
 .sky-form .toggle input:checked + i {
-	border-color: #1980B6;	
+	border-color: #1980B6;
 }
 .sky-form .rating input:checked ~ label {
-	color: #1980B6;	
+	color: #1980B6;
 }
 
 
