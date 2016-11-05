@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content="Web Api Project" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+		<div class="container">
+			<div class="navbar-header" role="navigation">
+				<span class="navbar-brand">Adventure Works Api</span>
+			</div>
+		</div>
+	</header>
+
+	<main class="container body-content" role="main">
+		@RenderBody()
+		<hr />
+		<footer role="contentinfo">
+			<p>&copy; @DateTime.Now.Year - Adventure Works Api</p>
+		</footer>
+	</main>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>
