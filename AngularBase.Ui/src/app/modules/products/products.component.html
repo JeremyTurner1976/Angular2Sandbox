@@ -6,35 +6,45 @@
 
 	<div class="panel-body">
 		<p>Current catalog as of {{currentDate()}}</p>
+
+    <div class="fancy-form">
+      <i class="fa fa-user"></i>
+
+      <input type="text" class="form-control" placeholder="Name Search" [(ngModel)]="filter">
+
+      <span class="fancy-tooltip top-left">
+        <em>Searches for matching products</em>
+      </span>
+    </div>
 	</div>
 
   <div class='table-responsive'>
     <table class="table table-striped table-hover" *ngIf='products && products.length'>
       <thead>
         <tr>
-          <th class="h5">Image</th>
+          <th class="h5 text-center">Image</th>
           <th class="h5">Name</th>
-          <th class="h5">Cost</th>
-          <th class="h5">Retail</th>
-          <th class="h5">First Made</th>
-          <th class="h5">Purchase</th>
+          <th class="h5 text-right">Cost</th>
+          <th class="h5 text-right">Retail</th>
+          <th class="h5 text-right hidden-xs hidden-sm hidden-md">First Made</th>
+          <th class="h5 text-center hidden-xs">Purchase</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of products">
-          <td>
+        <tr *ngFor="let item of products" (click)="productRowClicked()">
+          <td class="text-center">
             <img class="img-responsive" alt="Photo"
-              src="data:image/png;base64,{{item.productThumbnail}}"
+              src="data:image/gif;base64,{{item.productThumbnail}}"
               [title]="item.name">
           </td>
-          <td class="h6"><strong>{{ item.name }} {{item.productThumbnailFileName}}</strong></td>
-          <td class="h6">{{ item.standardCost }}</td>
-          <td class="h6">{{ item.listPrice }}</td>
-          <td class="h6">{{ item.sellStartDate }}</td>
-          <td>
+          <td class="h6"><strong>{{ item.name }}</strong></td>
+          <td class="h6 text-right">{{ item.standardCost | currency:"USD":true:"1.2-2" }}</td>
+          <td class="h6 text-right">{{ item.listPrice | currency:"USD":true:"1.2-2" }}</td>
+          <td class="h6 text-right hidden-xs hidden-sm hidden-md" style="margin-right:20px;">{{ item.sellStartDate | date:"mediumDate" }}</td>
+          <td class="text-center hidden-xs xs-hidden-button">
             <button type="button"
               class="btn btn-sm btn-default"
-              ng-click="click()">
+              (click)="orderClicked()">
               Order
             </button>
           </td>

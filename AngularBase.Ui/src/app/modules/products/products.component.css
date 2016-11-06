@@ -8,6 +8,9 @@
 
 .table > tbody > tr > td {
   vertical-align: middle;
+  border-right-width:1px;
+  border-right-color:lightgrey;
+  border-right-style: solid;
 }
 
 /*.img  {
