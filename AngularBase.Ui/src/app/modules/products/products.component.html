@@ -32,15 +32,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of products" (click)="productRowClicked()">
-          <td class="text-center">
+          <td class="text-center border-right">
             <img class="img-responsive" alt="Photo"
               src="data:image/gif;base64,{{item.productThumbnail}}"
               [title]="item.name">
           </td>
-          <td class="h6"><strong>{{ item.name }}</strong></td>
-          <td class="h6 text-right">{{ item.standardCost | currency:"USD":true:"1.2-2" }}</td>
-          <td class="h6 text-right">{{ item.listPrice | currency:"USD":true:"1.2-2" }}</td>
-          <td class="h6 text-right hidden-xs hidden-sm hidden-md" style="margin-right:20px;">{{ item.sellStartDate | date:"mediumDate" }}</td>
+          <td class="h6 border-right"><strong>{{ item.name }}</strong></td>
+          <td class="h6 text-right border-right">{{ item.standardCost | currency:"USD":true:"1.2-2" }}</td>
+          <td class="h6 text-right border-right">{{ item.listPrice | currency:"USD":true:"1.2-2" }}</td>
+          <td class="h6 text-right hidden-xs hidden-sm hidden-md border-right" style="margin-right:20px;">{{ item.sellStartDate | date:"mediumDate" }}</td>
           <td class="text-center hidden-xs xs-hidden-button">
             <button type="button"
               class="btn btn-sm btn-default"
