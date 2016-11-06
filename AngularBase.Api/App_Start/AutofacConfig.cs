@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Web.Http;
+using AngularBase.Api.Abstract;
 using AngularBase.Api.Controllers;
+using AngularBase.Api.ViewModels;
 using AngularBase.Data.AdventureWorks;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -20,9 +22,11 @@ namespace AngularBase.Api
 			builder.RegisterType<AdventureWorks>().AsSelf().As<DbContext>()
                 .PropertiesAutowired().InstancePerLifetimeScope();
 
+			builder.RegisterType<ProductsViewModel>().AsSelf().As<ProductsViewModel>()
+				.PropertiesAutowired().InstancePerLifetimeScope();
 
-            // Register your Web API controllers
-            builder.RegisterApiControllers(typeof (ConstantsController).Assembly);
+			// Register your Web API controllers
+			builder.RegisterApiControllers(typeof (ConstantsController).Assembly);
 			builder.RegisterApiControllers(typeof (ProductsController).Assembly);
 			builder.RegisterApiControllers(typeof (SalesPeopleController).Assembly);
 

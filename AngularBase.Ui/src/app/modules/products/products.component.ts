@@ -19,6 +19,13 @@ export class ProductsComponent implements OnInit {
 
   constructor(private productsService : ProductsService) {  }
 
+  currentDate(){
+    var currentDate = new Date();
+    return currentDate.getDate() +
+      "/" + currentDate.getMonth() +
+      "/" + currentDate.getFullYear();
+  }
+
   ngOnInit() {
     //sample data pull
     this.productsService.getProduct(1)
@@ -38,5 +45,9 @@ export class ProductsComponent implements OnInit {
               this.errorMessage = 'Unable to save product.';
           }
       });
+  }
+
+  click(){
+    console.log("CLICK");
   }
 }

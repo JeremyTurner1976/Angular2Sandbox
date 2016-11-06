@@ -138,5 +138,6 @@ namespace AngularBase.Data.AdventureWorks
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkOrder> WorkOrders { get; set; }
+
     }
 }

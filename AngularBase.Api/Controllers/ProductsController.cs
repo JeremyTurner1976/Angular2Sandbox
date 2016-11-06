@@ -4,26 +4,46 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using System.Web.Http.ModelBinding;
 using AngularBase.Api.Abstract;
+using AngularBase.Api.ViewModels;
 using AngularBase.Data.AdventureWorks;
 
 namespace AngularBase.Api.Controllers
 {
+
+
 	public class ProductsController : BaseApiController
 	{
-		public ProductsController(AdventureWorks adventureWorks)
+		private readonly ProductsViewModel viewModel;
+
+		public ProductsController(
+			AdventureWorks adventureWorks,
+			ProductsViewModel productsViewModel)
 		{
 			AdventureWorks = adventureWorks;
+			viewModel = productsViewModel;
 		}
 
 		// GET: api/Products
-		public IQueryable<Product> GetProducts()
+		public IQueryable<ProductsViewModel.ListProduct> GetProducts()
 		{
-			return AdventureWorks.Products.Where(x => x.Name != null && x.ProductID <= 1000);
+			try
+			{
+				return viewModel.GetProducts();
+			}
+			catch (Exception ex)
+			{
+				var that = ex;
+				//TODO UIService for error handling
+				return new List<ProductsViewModel.ListProduct>().AsQueryable();
+			}
 		}
 
 		// GET: api/Products/5
