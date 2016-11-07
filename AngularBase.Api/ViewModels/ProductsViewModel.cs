@@ -103,11 +103,8 @@ namespace AngularBase.Api.ViewModels
 
 			public DateTime SellStartDate { get; set; }
 
-			public ICollection<ProductProductPhoto> ProductProductPhotoes { get; set; }
 
 			public byte[] ProductThumbnail { get; set; }
-
-			public string Base64Thumbnail { get; set; }
 
 			public string ProductThumbnailFileName { get; set; }
 		}

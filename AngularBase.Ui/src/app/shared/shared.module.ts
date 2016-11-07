@@ -2,20 +2,25 @@ import { NgModule }  from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { PopoutComponent } from './components/popout/popout.component';
-import { ToasterComponent } from './components/toaster/toaster.component';
+import { PopoutActionComponent } from './components/popout/popout-action/popout-action.component';
+import { PopoutContentComponent } from './components/popout/popout-content/popout-content.component';
+
+import { SourceBase64Pipe } from './pipes/source-base64.pipe';
 
 @NgModule({
-  imports: [ CommonModule],
+  imports: [
+    CommonModule],
   exports : [
     CommonModule,
     FormsModule,
-    PopoutComponent,
-    ToasterComponent
+    PopoutActionComponent,
+    PopoutContentComponent,
+    SourceBase64Pipe
   ],
   declarations: [
-    PopoutComponent,
-    ToasterComponent
+    PopoutActionComponent,
+    PopoutContentComponent,
+    SourceBase64Pipe
   ],
 })
 export class SharedModule { }

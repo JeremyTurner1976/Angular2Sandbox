@@ -1,4 +1,5 @@
-import { window } from '@angular-cli/ast-tools/node_modules/rxjs/operator/window';
+import { window } from
+  '@angular-cli/ast-tools/node_modules/rxjs/operator/window';
 import { Component, OnInit } from
   '@angular/core';
 import { ProductsService } from
@@ -14,25 +15,17 @@ import { Product } from
 
 export class ProductsComponent implements OnInit {
 
-  product: Product = new Product();
   products: Product[] = [];
+  currentProduct: Product = new Product();
+  lastProductAltered: Product = new Product();
+  lastProductAlteredDate: Date = new Date(1900,1,1);
+
   filter: string = "";
   errorMessage: string = "";
 
   constructor(private productsService : ProductsService) {  }
 
-  currentDate(){
-    var currentDate = new Date();
-    return currentDate.getDate() +
-      "/" + currentDate.getMonth() +
-      "/" + currentDate.getFullYear();
-  }
-
   ngOnInit() {
-    //sample data pull
-    this.productsService.getProduct(1)
-      .subscribe((product: Product) => this.product = product);
-
      this.productsService.getProducts()
       .subscribe((products: Product[]) =>
         this.products = products);
@@ -40,29 +33,57 @@ export class ProductsComponent implements OnInit {
 
   save(product: Product) {
     this.productsService.update(product)
-      .subscribe((status: boolean) => {
+      .subscribe((status: boolean) =>  {
           if (status) {
-            this.product = product;
+            this.currentProduct = product;
           } else {
-              this.errorMessage = 'Unable to save product.';
+            this.errorMessage = "Unable to save product.";
           }
       });
   }
 
-  orderClicked() : void {
-    console.log("Click on Order");
-    //show a popout order page
-    //detail read only view here, but collapsed
-  }
+  onProductRowDetails(product) {
+    //TODO get a Front end db service like Ember Data
+    if(this.currentProduct.productID != product.productID){
 
-  productRowClicked() : void{
-    if ($('.xs-hidden-button').is(':hidden')){
-      console.log("Click on Order programmatically, button is visible: " + !$('.xs-hidden-button').is(':hidden'));
-      //send an order
+      this.productsService.getProduct(product.productID)
+        .subscribe((product: Product) => {
+          this.currentProduct = product;
+
+          console.log("LOADED Full Details for Product: " +
+            this.currentProduct.productID);
+
+          console.log(this.currentProduct);
+        });
+    } else {
+      console.log("NO-ACTION")
     }
   }
 
-  detailClicked(){
-    //show a detail/edit view
+  onProductOrderClosed(order: boolean){
+
+    //show a popout order page with save for that product
+    //that product must know it's current shopping cart status
+    //detail read only view here at top, but collapsed
+
+    if(order){
+      console.log("New Product- ORDERED " + this.currentProduct.productID);
+      this.lastProductAltered = this.currentProduct;
+      this.lastProductAlteredDate = new Date();
+    } else{
+      console.log("NO-ACTION")
+     }
+  }
+
+  onProductDetailClosed(save: boolean){
+    //detail edit view here with save on change only
+
+    if(save){
+      console.log("New Product- SAVED " + this.currentProduct.productID);
+      this.lastProductAltered = this.currentProduct;
+      this.lastProductAlteredDate = new Date();
+    }  else{
+      console.log("NO-ACTION")
+    }
   }
 }

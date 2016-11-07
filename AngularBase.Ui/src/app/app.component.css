@@ -12,6 +12,7 @@
   min-width:250px;
 }
 
-.no-padding-right {
+.no-padding-sides {
+  padding-left:0;
   padding-right:0;
 }

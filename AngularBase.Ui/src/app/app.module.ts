@@ -18,20 +18,12 @@ import{ CommonModule } from
 import{ ExceptionsModule } from
   './shared/exceptions';
 
-//Shared Components
-import { PopoutComponent } from
-  './shared/components/popout/popout.component';
-import { ToasterComponent } from
-  './shared/components/toaster/toaster.component';
-
 //Features
 import { ProductsModule } from
   './modules/products/products.module';
 import { SalesPeopleModule } from
   './modules/sales-people/sales-people.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-
 
 
 @NgModule({

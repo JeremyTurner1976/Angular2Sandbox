@@ -5,7 +5,12 @@
 	</div>
 
 	<div class="panel-body">
-		<p>Current catalog as of {{currentDate()}}</p>
+
+    <p>
+      <strong>Product Altered:</strong> {{lastProductAltered.name}}
+      <br />
+      <strong>Altered:</strong> {{ lastProductAlteredDate | date:"mediumDate" }} {{ lastProductAlteredDate | date:"mediumTime"}}
+    </p>
 
     <div class="fancy-form">
       <i class="fa fa-user"></i>
@@ -19,34 +24,64 @@
 	</div>
 
   <div class='table-responsive'>
-    <table class="table table-striped table-hover" *ngIf='products && products.length'>
+    <table class="table table-striped table-hover table-bordered" *ngIf='products && products.length'>
       <thead>
         <tr>
           <th class="h5 text-center">Image</th>
           <th class="h5">Name</th>
           <th class="h5 text-right">Cost</th>
-          <th class="h5 text-right">Retail</th>
+          <th class="h5 text-right xxs-hidden">Retail</th>
           <th class="h5 text-right hidden-xs hidden-sm hidden-md">First Made</th>
           <th class="h5 text-center hidden-xs">Purchase</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of products" (click)="productRowClicked()">
-          <td class="text-center border-right">
+        <tr *ngFor="let item of products | productsFilter: filter">
+          <td class="text-center">
             <img class="img-responsive" alt="Photo"
-              src="data:image/gif;base64,{{item.productThumbnail}}"
+              [src]="item.productThumbnail | sourceBase64:'gif'"
               [title]="item.name">
           </td>
-          <td class="h6 border-right"><strong>{{ item.name }}</strong></td>
-          <td class="h6 text-right border-right">{{ item.standardCost | currency:"USD":true:"1.2-2" }}</td>
-          <td class="h6 text-right border-right">{{ item.listPrice | currency:"USD":true:"1.2-2" }}</td>
-          <td class="h6 text-right hidden-xs hidden-sm hidden-md border-right" style="margin-right:20px;">{{ item.sellStartDate | date:"mediumDate" }}</td>
+          <td class="h6">
+
+            <strong>
+              <app-popout-action
+                modalId="product-detail-modal"
+                (click)="onProductRowDetails(item)"
+                actionMessage="{{item.name}}">
+              </app-popout-action>
+            </strong>
+
+          </td>
+          <td class="h6 text-right hidden-xs">
+            {{ item.standardCost | currency:"USD":true:"1.2-2" }}
+          </td>
+          <td class="h6 text-right visible-xs">
+
+            <strong>
+              <app-popout-action
+                modalId="product-order-modal"
+                (click)="onProductRowDetails(item)"
+                actionMessage="{{item.standardCost | currency:'USD':true:'1.2-2'}}">
+              </app-popout-action>
+            </strong>
+
+          </td>
+          <td class="h6 text-right xxs-hidden">
+            {{ item.listPrice | currency:"USD":true:"1.2-2" }}
+          </td>
+          <td class="h6 text-right hidden-xs hidden-sm hidden-md">
+            {{ item.sellStartDate | date:"mediumDate" }}
+          </td>
           <td class="text-center hidden-xs xs-hidden-button">
-            <button type="button"
-              class="btn btn-sm btn-default"
-              (click)="orderClicked()">
-              Order
-            </button>
+
+            <app-popout-action
+              modalId="product-order-modal"
+              (click)="onProductRowDetails(item)"
+              actionMessage= "Order"
+              actionClasses="btn btn-default btn-sm table-button">
+            </app-popout-action>
+
           </td>
         </tr>
       </tbody>
@@ -55,4 +90,36 @@
 
 </div>
 
+/*MODALS*/
+<app-popout-content
+  modalId="product-detail-modal"
+  title="Product Details"
+  primaryActionMessage="Save Details"
+  (actionSelected)="onProductDetailClosed($event)">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <strong>{{currentProduct.productID}} Details:</strong> {{ currentProduct.name }}
+      <hr />
+      This Item is Loaded and ready to be worked with
+    </div>
+  </div>
+
+</app-popout-content>
+
+<app-popout-content
+  modalId="product-order-modal"
+  title="Purchase this Product"
+  primaryActionMessage="Add To Cart"
+  (actionSelected)="onProductOrderClosed($event)">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <strong>{{currentProduct.productID}} Order:</strong> {{ currentProduct.name }}
+      <hr />
+      Price: {{ currentProduct.standardCost | currency:"USD":true:"1.2-2" }}
+    </div>
+  </div>
+
+</app-popout-content>
 
