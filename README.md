@@ -36,7 +36,7 @@
 	- Bootstrap 3 Snippets
 	- Instant Markdown
 	- Install Recommended extensions by using the ... menu item. Skip the Mono extension it is for Linux and OSX.
-	- Show popular extensions as well in the same and take a look at the top 20
+	- Show popular extensions as well in the same menu and take a look at the top 20
 
 ### Angular 2 Cli to generate code, build, deploy, and test
 - Install the [Prerequisites](https://github.com/angular/angular-cli#prerequisites) for Angular CLI. You can see what is installed by typing 'node -v' or 'npm -v' in a command prompt.
@@ -47,9 +47,9 @@
 	- npm install
 	- ng serve
 - You should now be serving up the front end of our Web Api 2.2 Angular 2 solution. [Try It](http://localhost:4200)
-	> Note, you must have the below described Express Server or the WebApi server up in order to load pages with data such as Products.
+	> Note, you must have the below described Express Server or the WebApi server ready to pass data in order to load pages with data, such as Products.
 - You can close any console window Node Service by entering Ctrl-C twice and selecting yes.
-- This is also a work in progress as this is just a place to learn, and I will be bringing in an incredible Products Page next.
+- This is also a work in progress as this is just a place to learn
 
 ### The Express Server Api
 - In order to allow for Automated testing against a set of mock data, and Test Driven Development in parrallel with API work I brought in an Express Server
