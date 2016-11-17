@@ -25,9 +25,11 @@
 
 ## The Front End
 - Install [Visual Studio Code](https://code.visualstudio.com/)
-		> I recommend in the install process that you alter one default set.Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
-- Goto your diretory for the Angular 2 Sandbox, right click on the folder AngularBase.Ui and select Open With Code.
-- Goto the File tab and select Auto Save, this will make a full file save every second 
+
+  > I recommend in the install process that you alter one default set.Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
+  
+- Goto your directory for the Angular 2 Sandbox, right click on the folder AngularBase.Ui and select Open With Code.
+- Goto the File tab and select Auto Save, this will make a full file save on change every second 
 - Now Install some extensions, you open this by selecting the box icon on the bottom left. I recommend:
 	- Git History
 	- Debugger for Chrome
@@ -45,7 +47,8 @@
 	- npm install
 	- ng serve
 - You should now be serving up the front end of our Web Api 2.2 Angular 2 solution. [Try It](http://localhost:4200)
-		> Note, you must have the below described Express Server or the WebApi server ready to pass data in order to load pages with data, such as Products.
+	> Note, you must have the below described Express Server or the WebApi server ready to pass data in order to load pages with data, such as Products.
+		
 - You can close any console window Node Service by entering Ctrl-C twice and selecting yes.
 - This is also a work in progress as this is just a place to learn
 
