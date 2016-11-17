@@ -20,11 +20,11 @@
 - Set the Properties -> Web of the API project to start at a specific page which should be 'Help'
 - Start the API Project in VS 2015 and confirm that you are able to hit an expected endpoint [Test Api Call](http://localhost:51493/api/v0.0.0/Products)
 - At this point you should see both Help functionality and the returned products call for your API. Adventure works will allow for any UI test case in this sandbox, and allowing VS to create controllers for you via the Data Project will ensure that code is consistent accross all controllers.
-- Cors is enabled in this WebApi via [Asp.Net WebApi.Cors] (https://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors)
+- Cors is enabled in this WebApi via [Asp.Net WebApi.Cors](https://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors)
 - I will be porting over features from my previous Angular 1.4 and Ember 1.8 Applications to flesh out the back end in the future, starting with paged loading only 10 records per request
 
 ## The Front End
-- Install[Visual Studio Code] (https://code.visualstudio.com/)
+- Install [Visual Studio Code](https://code.visualstudio.com/)
 	> I recommend in the install process that you alter one default set.Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
 - Goto your diretory for the Angular 2 Sandbox, right click on the folder AngularBase.Ui and select Open With Code.
 - Goto the File tab and select Auto Save, this will make a full file save every second 
