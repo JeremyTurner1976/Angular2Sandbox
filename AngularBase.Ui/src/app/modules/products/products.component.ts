@@ -1,5 +1,3 @@
-import { window } from
-  '@angular-cli/ast-tools/node_modules/rxjs/operator/window';
 import { Component, OnInit } from
   '@angular/core';
 import { ProductsService } from

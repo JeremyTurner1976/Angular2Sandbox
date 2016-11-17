@@ -34,14 +34,16 @@
 	- Git History
 	- Debugger for Chrome
 	- Bootstrap 3 Snippets
-	- Generally it is worthwhile to install the recommended extensions by using the ... menu item. Skip the Mono extension it is for Linux and OSX.
+	- Instant Markdown
+	- Install Recommended extensions by using the ... menu item. Skip the Mono extension it is for Linux and OSX.
+	- Show popular extensions as well in the same and take a look at the top 20
 
 ### Angular 2 Cli to generate code, build, deploy, and test
 - Install the [Prerequisites](https://github.com/angular/angular-cli#prerequisites) for Angular CLI. You can see what is installed by typing 'node -v' or 'npm -v' in a command prompt.
 	- [Node and Npm MSI](https://nodejs.org/en/)
 - In VS Code, in your open solution, right click the folder source and select 'Open in Command Prompt', then go up one level via'cd ..'
 - Now at this root app level, enter the following commands, disregard any warnings they are libraries for other Operating Systems and expected:
-	- npm install -g angular-cli
+	- npm install -g angular-cli@latest
 	- npm install
 	- ng serve
 - You should now be serving up the front end of our Web Api 2.2 Angular 2 solution. [Try It](http://localhost:4200)
