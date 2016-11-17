@@ -1,7 +1,5 @@
 # Angular 2 Sandbox
 
-[Github Resource](https://github.com/JeremyTurner1976/Angular2Sandbox)
-
 ## The API
 - Clone the Git Repository via VS 2015 and download to local repo
 - Install the Adventure Works 2014 DB into SQL Express. [Samples](https://msdn.microsoft.com/en-us/library/mt710790.aspx)
@@ -23,14 +21,14 @@
 - Start the API Project in VS 2015 and confirm that you are able to hit an expected endpoint [Test Api Call](http://localhost:51493/api/v0.0.0/Products)
 - At this point you should see both Help functionality and the returned products call for your API. Adventure works will allow for any UI test case in this sandbox, and allowing VS to create controllers for you via the Data Project will ensure that code is consistent accross all controllers.
 - Cors is enabled in this WebApi via [Asp.Net WebApi.Cors] (https://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors)
-- I will be porting over features from my previous Angular 1.4 and Ember 1.8 Applications to flesh out the back end in the future
+- I will be porting over features from my previous Angular 1.4 and Ember 1.8 Applications to flesh out the back end in the future, starting with paged loading only 10 records per request
 
 ## The Front End
 - Install[Visual Studio Code] (https://code.visualstudio.com/)
 	> I recommend in the install process that you alter one default set.Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
 - Goto your diretory for the Angular 2 Sandbox, right click on the folder AngularBase.Ui and select Open With Code.
 - Goto the File tab and select Auto Save, this will make a full file save every second 
-- Now Install some extensions, you open this by selecting the box icon on the bottom left.I recommend:
+- Now Install some extensions, you open this by selecting the box icon on the bottom left. I recommend:
 	- Git History
 	- Debugger for Chrome
 	- Bootstrap 3 Snippets
@@ -55,7 +53,9 @@
 - In order to allow for Automated testing against a set of mock data, and Test Driven Development in parrallel with API work I brought in an Express Server
 	- To use this, simply right click the directory AngularBase.Ui/express-mocks and choose to 'Open in Command Prompt'. Then enter 'node app.js'.
 	- The preferred method at this point is to have two command prompts open, one running Angular and the other running the express server
-	- I used [this](https://javascriptrocks.wordpress.com/2016/06/04/express-with-angular-cli-in-5-minutes/) resource to create this, but expect to expand upon this in the future to match Ember-Cli's structure
+	- I have just started working on this, and have not resolved single product loads, and paged loading only 10 records per request
+	- I expect to expand upon this in the future to match Ember-Cli's structure, I miss you 'ember g http-mock posts'
+	- I used [this](https://javascriptrocks.wordpress.com/2016/06/04/express-with-angular-cli-in-5-minutes/) resource to create this simplest possible version
 
 ## Additional Resources
 
