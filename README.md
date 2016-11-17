@@ -26,7 +26,7 @@
 ## The Front End
 - Install [Visual Studio Code](https://code.visualstudio.com/)
 
-  > I recommend in the install process that you alter one default set.Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
+  > I recommend in the install process that you alter one default set. Select Additional Tasks -> Open with Code -> Select yes for both options. This allows you to open a project directly from its folder in File Explorer.
   
 - Goto your directory for the Angular 2 Sandbox, right click on the folder AngularBase.Ui and select Open With Code.
 - Goto the File tab and select Auto Save, this will make a full file save on change every second 
