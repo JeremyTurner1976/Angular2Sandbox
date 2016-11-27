@@ -1,16 +1,13 @@
 import { from } from 'rxjs/observable/from';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from
   './app.component';
-
-//Services
-import { APP_PROVIDERS } from
-  './app.providers';
+import {APP_BASE_HREF}
+  from '@angular/common';
 
 //Shared Helpers
 import{ CommonModule } from
@@ -23,7 +20,8 @@ import { ProductsModule } from
   './modules/products/products.module';
 import { SalesPeopleModule } from
   './modules/sales-people/sales-people.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from
+  './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -32,20 +30,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     RouterModule.forRoot([
       { path: 'dashboard', component: DashboardComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]),
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
     ProductsModule,
     SalesPeopleModule
   ],
   providers: [
-    APP_PROVIDERS
+    {provide: APP_BASE_HREF, useValue: '/'}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from
   '@angular/core';
 import { ProductsService } from
-  '../../services/products.service';
+  './services/products.service';
 import { Product } from
   '../../models/objects';
 
@@ -24,9 +24,12 @@ export class ProductsComponent implements OnInit {
   constructor(private productsService : ProductsService) {  }
 
   ngOnInit() {
+     //Subscribe allows for(successCallback, failureCallback, completedCallback)
+     //each itemis put through the success or failure as the data arrives
      this.productsService.getProducts()
-      .subscribe((products: Product[]) =>
-        this.products = products);
+      .subscribe(
+        (products: Product[]) => this.products = products,
+        (error: any) => this.errorMessage = error);
   }
 
   save(product: Product) {
@@ -41,18 +44,21 @@ export class ProductsComponent implements OnInit {
   }
 
   onProductRowDetails(product) {
+    //route to the product and have that load the details
+
     //TODO get a Front end db service like Ember Data
     if(this.currentProduct.productID != product.productID){
 
       this.productsService.getProduct(product.productID)
-        .subscribe((product: Product) => {
+        .subscribe(
+        (product: Product) => {
           this.currentProduct = product;
 
           console.log("LOADED Full Details for Product: " +
             this.currentProduct.productID);
-
           console.log(this.currentProduct);
-        });
+        },
+        (error: any) => this.errorMessage = error);
     } else {
       console.log("NO-ACTION")
     }
@@ -72,16 +78,5 @@ export class ProductsComponent implements OnInit {
       console.log("NO-ACTION")
      }
   }
-
-  onProductDetailClosed(save: boolean){
-    //detail edit view here with save on change only
-
-    if(save){
-      console.log("New Product- SAVED " + this.currentProduct.productID);
-      this.lastProductAltered = this.currentProduct;
-      this.lastProductAlteredDate = new Date();
-    }  else{
-      console.log("NO-ACTION")
-    }
-  }
 }
+

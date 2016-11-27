@@ -63,24 +63,24 @@
           </div>
         </li>
       </ul>
-      <a class="logo pull-left" href="dashboard">
+      <a class="logo pull-left" [routerLink]="['/dashboard']">
         <img src="assets/images/jt76-image.jpg" alt="Jt76 Brand" style="padding-top: 8px;"/>
       </a>
       <div class="navbar-collapse pull-right nav-main-collapse collapse">
         <nav class="nav-main">
           <ul id="topMain" class="nav nav-pills nav-main">
             <li class="active">
-              <a href="dashboard">
+              <a [routerLink]="['/dashboard']" >
                 HOME
               </a>
             </li>
             <li>
-              <a href="products">
+              <a [routerLink]="['/products']" >
                 PRODUCTS
               </a>
             </li>
             <li>
-              <a href="salesPeople">
+              <a [routerLink]="['/salesPeople']" >
                 SALES DEPT.
               </a>
             </li>
@@ -90,7 +90,7 @@
               </a>
             </li>
             <li>
-              <a href="http://localhost:51493//Help">
+              <a href="http://localhost:51493/Help">
                 WEB API
               </a>
             </li>

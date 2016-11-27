@@ -28,7 +28,6 @@ app.get('/api/v0.0.0/products', function (req, res) {
   res.sendFile(path.join(__dirname, path.join("mocks", "apiProducts.json")));
 });
 
-//TODO product api
 app.get('/api/v0.0.0/products/:id', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -38,7 +37,6 @@ app.get('/api/v0.0.0/products/:id', function (req, res) {
   });
   res.send(matchingItems[0]);
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

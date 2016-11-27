@@ -45,11 +45,7 @@
           <td class="h6">
 
             <strong>
-              <app-popout-action
-                modalId="product-detail-modal"
-                (click)="onProductRowDetails(item)"
-                actionMessage="{{item.name}}">
-              </app-popout-action>
+              <a [routerLink]="['/product', item.productID]">{{item.name}}</a>
             </strong>
 
           </td>
@@ -91,22 +87,6 @@
 </div>
 
 <!--MODALS-->
-<app-popout-content
-  modalId="product-detail-modal"
-  title="Product Details"
-  primaryActionMessage="Save Details"
-  (actionSelected)="onProductDetailClosed($event)">
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <strong>{{currentProduct.productID}} Details:</strong> {{ currentProduct.name }}
-      <hr />
-      This Item is Loaded and ready to be worked with
-    </div>
-  </div>
-
-</app-popout-content>
-
 <app-popout-content
   modalId="product-order-modal"
   title="Purchase this Product"

@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
-import { ProductsComponent } from './products.component';
-import { ProductComponent } from './product/product.component';
-import { ProductsFilterPipe } from './pipes/products-filter.pipe';
+import { SharedModule } from
+  '../../shared/shared.module';
+import { ProductsComponent } from
+  './products.component';
+import { ProductComponent } from
+  './product/product.component';
+import { ProductsFilterPipe } from
+  './pipes/products-filter.pipe';
+import { ProductGuard } from
+  './guards/product-guard.service';
+import { ProductsService } from
+  './services/products.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +22,13 @@ import { ProductsFilterPipe } from './pipes/products-filter.pipe';
   imports: [
     SharedModule,
     RouterModule.forChild([
+      { path: 'product/:id',
+        canActivate: [ ProductGuard ],
+        component: ProductComponent },
       { path: 'products', component: ProductsComponent }
     ])
   ],
-  bootstrap: [ProductsComponent]
+  providers: [ ProductGuard, ProductsService ]
+  //bootstrap is for only the apps root
 })
 export class ProductsModule { }
