@@ -21,14 +21,14 @@ app.get('/ping', function (req, res) {
   res.send('pong');
 });
 
-app.get('/api/v0.0.0/products', function (req, res) {
+app.get('/api/v0_0/products', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   res.sendFile(path.join(__dirname, path.join("mocks", "apiProducts.json")));
 });
 
-app.get('/api/v0.0.0/products/:id', function (req, res) {
+app.get('/api/v0_0/products/:id', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 

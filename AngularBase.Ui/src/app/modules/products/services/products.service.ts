@@ -16,7 +16,7 @@ import{ IProduct } from '../../../models/interfaces';
 export class ProductsService {
 
   //TODO: Environment config
-  private url: string = 'http://localhost:51493/api/v0.0.0/products';
+  private url: string = 'http://localhost:51493/api/v0_0/products';
 
   constructor(
     private http: Http

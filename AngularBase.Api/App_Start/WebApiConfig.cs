@@ -55,7 +55,7 @@ namespace AngularBase.Api
 
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
-				routeTemplate: "api/v0.0.0/{controller}/{id}",
+				routeTemplate: "api/v0_0/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
 
