@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   lastProductAltered: Product = new Product();
   lastProductAlteredDate: Date = new Date(1900,1,1);
 
+  loading: boolean = true;
   filter: string = "";
   errorMessage: string = "";
 
@@ -28,7 +29,10 @@ export class ProductsComponent implements OnInit {
      //each itemis put through the success or failure as the data arrives
      this.productsService.getProducts()
       .subscribe(
-        (products: Product[]) => this.products = products,
+        (products: Product[]) => {
+          this.products = products;
+          this.loading = false;
+        },
         (error: any) => this.errorMessage = error);
   }
 

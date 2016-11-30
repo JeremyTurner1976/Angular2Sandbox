@@ -1,0 +1,9 @@
+<div class="preloader" id="preloader" [@visibilityChanged]="isVisible"
+  (@visibilityChanged.start)="animationStarted($event)"
+  (@visibilityChanged.done)="animationDone($event)">
+
+  <div class="inner">
+    <span class="loader"></span>
+  </div>
+
+</div>

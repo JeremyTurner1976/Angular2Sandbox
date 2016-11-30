@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class SalesPeopleComponent implements OnInit {
 
+  loading: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+        this.loading = false;
   }
 
 }

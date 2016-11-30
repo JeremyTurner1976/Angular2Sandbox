@@ -23,6 +23,8 @@ import { SalesPeopleModule } from
 import { DashboardComponent } from
   './dashboard/dashboard.component';
 
+import { SharedModule } from
+  './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { DashboardComponent } from
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]),
     ProductsModule,
-    SalesPeopleModule
+    SalesPeopleModule,
+    SharedModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'}

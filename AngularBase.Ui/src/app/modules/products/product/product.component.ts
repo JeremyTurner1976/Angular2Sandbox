@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   productName : string = "Loading";
   product: Product = new Product();
   productId : number = 0;
+  loading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,7 @@ export class ProductComponent implements OnInit {
           console.log("LOADED Full Details for Product: " +
             this.product.productID);
           console.log(this.product);
+          this.loading = false;
         },
         (error: any) => console.log(error));
   }
