@@ -38,17 +38,3 @@ html {
   margin-bottom: 0px;
 }
 
-/*Smarty Overrides*/
-.fancy-form>i {
-  margin-top: -6px;
-  left:10px;
-}
-
-.fancy-form {
-  margin-bottom: 0px;
-  margin-right: -8px;
-}
-
-.fancy-form>input {
-  border: none;
-}
