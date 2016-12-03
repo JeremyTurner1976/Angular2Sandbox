@@ -4,8 +4,6 @@ import { SharedModule } from
   '../../shared/shared.module';
 import { SalesPeopleComponent } from
   './sales-people.component';
-import { SalesPeopleGuard } from
-  './guards/sales-people-guard.service';
 
 @NgModule({
   declarations: [
@@ -15,10 +13,8 @@ import { SalesPeopleGuard } from
     SharedModule,
     RouterModule.forChild([
       { path: 'salesPeople',
-        canActivate: [ SalesPeopleGuard ],
         component: SalesPeopleComponent }
     ])
-  ],
-  providers: [ SalesPeopleGuard ]
+  ]
 })
 export class SalesPeopleModule { }

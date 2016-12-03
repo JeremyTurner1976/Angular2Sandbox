@@ -1,7 +1,13 @@
-import { Component, OnInit } from
-  '@angular/core';
+import { Component, OnInit }
+  from '@angular/core';
+import {Ng2PaginationModule}
+  from 'ng2-pagination';
 import { ProductsService } from
   './services/products.service';
+import { IPagedResponse } from
+  '../../viewModels/interfaces';
+import { IProduct } from
+  '../../models/interfaces';
 import { Product } from
   '../../models/objects';
 
@@ -13,74 +19,99 @@ import { Product } from
 
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [];
-  currentProduct: Product = new Product();
-  lastProductAltered: Product = new Product();
-  lastProductAlteredDate: Date = new Date(1900,1,1);
+  products: IProduct[] = [];
+  orderProduct: IProduct = new Product();
 
   loading: boolean = true;
+  pageSize: number = 10;
+  selectedPage: number = 1;
+  totalRecords: number = 0;
   filter: string = "";
   errorMessage: string = "";
 
+  productSubscription: any;
+  productsSubscription: any;
   constructor(private productsService : ProductsService) {  }
 
   ngOnInit() {
-     //Subscribe allows for(successCallback, failureCallback, completedCallback)
-     //each itemis put through the success or failure as the data arrives
-     this.productsService.getProducts()
-      .subscribe(
-        (products: Product[]) => {
-          this.products = products;
-          this.loading = false;
-        },
-        (error: any) => this.errorMessage = error);
+    this.getPage(this.selectedPage, true); //first load values
   }
 
-  save(product: Product) {
-    this.productsService.update(product)
-      .subscribe((status: boolean) =>  {
-          if (status) {
-            this.currentProduct = product;
-          } else {
-            this.errorMessage = "Unable to save product.";
-          }
-      });
+  ngOnDestroy() {
+    if(this.productSubscription)
+      this.productSubscription.unsubscribe();
+    if(this.productsSubscription)
+      this.productsSubscription.unsubscribe();
   }
 
-  onProductRowDetails(product) {
+  onProductRowDetails(product: IProduct) {
     //route to the product and have that load the details
 
-    //TODO get a Front end db service like Ember Data
-    if(this.currentProduct.productID != product.productID){
+    //TODO get a Front end data state service like Ember Data
+    if(this.orderProduct.productID != product.productID){
 
-      this.productsService.getProduct(product.productID)
+      this.productSubscription =
+        this.productsService.getProduct(product.productID)
         .subscribe(
-        (product: Product) => {
-          this.currentProduct = product;
-
-          console.log("LOADED Full Details for Product: " +
-            this.currentProduct.productID);
-          console.log(this.currentProduct);
-        },
-        (error: any) => this.errorMessage = error);
+          (product: Product) => {
+            this.orderProduct = product;
+            console.log(
+              "LOADED Full Details for Product: " +
+              this.orderProduct.productID);
+            console.log(this.orderProduct);
+          },
+          (error: any) => this.errorMessage = error);
     } else {
       console.log("NO-ACTION")
     }
   }
 
-  onProductOrderClosed(order: boolean){
-
+  onProductOrderClosed(ordered: boolean){
     //show a popout order page with save for that product
     //that product must know it's current shopping cart status
     //detail read only view here at top, but collapsed
 
-    if(order){
-      console.log("New Product- ORDERED " + this.currentProduct.productID);
-      this.lastProductAltered = this.currentProduct;
-      this.lastProductAlteredDate = new Date();
+    if(ordered){
+      console.log("New Product- ORDERED " + this.orderProduct.productID);
+      //Shopping cart interaction
     } else{
       console.log("NO-ACTION")
      }
   }
+
+  getPage(page: number, firstLoad: boolean = false){
+    console.log("getPage(" + page + ", " + firstLoad + ")");
+    let skip = (page - 1) * this.pageSize;
+    this.loading = firstLoad;
+
+     //Subscribe allows for(successCallback, failureCallback, completedCallback)
+     //each item is put through the success or failure as the data arrives
+     this.productsService.getProducts(
+        skip,
+        this.pageSize,
+        [
+          {
+              property: "Name",
+              condition:"Contains",
+              comparisonValue: this.filter,
+              andOr: ""
+          }
+        ]
+       )//TODO enum this up
+      .subscribe(
+        (response: IPagedResponse<IProduct>) => {
+          this.products = response.data as IProduct[];
+          this.totalRecords = response.total;
+          this.errorMessage = response.error || "";
+          this.selectedPage = page;
+          this.loading = false;
+        },
+        (error: any) => this.errorMessage = error);
+  }
+
+    onValueChanged(filterValue: string){filterValue
+      this.filter = filterValue;
+      this.getPage(1);
+    }
 }
 

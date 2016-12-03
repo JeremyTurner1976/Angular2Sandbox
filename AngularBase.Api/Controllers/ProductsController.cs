@@ -31,18 +31,38 @@ namespace AngularBase.Api.Controllers
 			viewModel = productsViewModel;
 		}
 
-		// GET: api/Products
-		public IQueryable<ProductsViewModel.ListProduct> GetProducts()
+		[HttpPost]
+		[Route("api/v0_0/pagedProducts")]
+		public PagedResponse<ProductsViewModel.ListProduct> GetProducts(PredicateObject predicateObject)
 		{
 			try
 			{
-				return viewModel.GetProducts();
+				//NOTE: I used to send a stringified json object to handle this
+				//and a factory to build the predicate set and sql query 
+				//and params based on object property types from that string
+				//	It is very straightforward using reflection to ensure 
+				//	conditional values are types expected
+				//	and wheres and orderbys point to properties of the object
+				//	and no issues arise from Little Bobby Tables (string checks)
+				//Can use RowNumber Based SQL selects, ensure all API
+				//GetMultiples() and GetCounts() handle this
+
+				return new PagedResponse<ProductsViewModel.ListProduct>()
+				{
+					Data = viewModel.GetProducts(predicateObject),
+					Total = viewModel.GetProductCount(predicateObject)
+				};
 			}
 			catch (Exception ex)
 			{
 				var that = ex;
-				//TODO UIService for error handling
-				return new List<ProductsViewModel.ListProduct>().AsQueryable();
+				//TODO UIService for error handling and logging
+				return new PagedResponse<ProductsViewModel.ListProduct>()
+				{
+					Data = new List<ProductsViewModel.ListProduct>().AsQueryable(),
+					Total = 0,
+					Error = ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace
+				};
 			}
 		}
 

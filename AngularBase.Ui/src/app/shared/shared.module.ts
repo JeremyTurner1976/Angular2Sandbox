@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }
   from '@angular/forms';
 
+import { DebouncedInputComponent }
+  from './components/debounced-input/debounced-input.component';
 import { LoadingPanelComponent }
   from './components/loading-panel/loading-panel.component';
 import { PopoutActionComponent }
@@ -14,18 +16,21 @@ import { SourceBase64Pipe } from './pipes/source-base64.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports : [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DebouncedInputComponent,
     LoadingPanelComponent,
     PopoutActionComponent,
     PopoutContentComponent,
     SourceBase64Pipe
   ],
   declarations: [
+    DebouncedInputComponent,
     LoadingPanelComponent,
     PopoutActionComponent,
     PopoutContentComponent,

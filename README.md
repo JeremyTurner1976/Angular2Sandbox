@@ -21,7 +21,7 @@
 - Start the API Project in VS 2015 and confirm that you are able to hit an expected endpoint [Test Api Call](http://localhost:51493/api/v0.0.0/Products)
 - At this point you should see both Help functionality and the returned products call for your API. Adventure works will allow for any UI test case in this sandbox, and allowing VS to create controllers for you via the Data Project will ensure that code is consistent accross all controllers.
 - Cors is enabled in this WebApi via [Asp.Net WebApi.Cors](https://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors)
-- I will be porting over features from my previous Angular 1.4 and Ember 1.8 Applications to flesh out the back end in the future, starting with paged loading only 10 records per request
+- I will be porting over features from my previous Angular 1.4 and Ember 1.8 Applications to flesh out the back end in the future
 
 ## The Front End
 - Install [Visual Studio Code](https://code.visualstudio.com/)
@@ -56,7 +56,7 @@
 - In order to allow for Automated testing against a set of mock data, and Test Driven Development in parrallel with API work I brought in an Express Server
 	- To use this, simply right click the directory AngularBase.Ui/express-mocks and choose to 'Open in Command Prompt'. Then enter 'node app.js'.
 	- The preferred method at this point is to have two command prompts open, one running Angular and the other running the express server
-	- I have just started working on this, and have not resolved single product loads, and paged loading only 10 records per request
+	- I have just started work on this, but will have error logging both client and server side, as well as solid Data Handling Client Side
 	- I expect to expand upon this in the future to match Ember-Cli's structure, I miss you 'ember g http-mock posts'
 	- I used [this](https://javascriptrocks.wordpress.com/2016/06/04/express-with-angular-cli-in-5-minutes/) resource to create this simplest possible version
 
@@ -72,7 +72,13 @@
 - All the style is from a [WrapBootstrap](https://wrapbootstrap.com/) Theme:
 	- [Smarty](http://theme.stepofweb.com/Smarty/v1.1.4/HTML/index.html)
 
+## Angular 2 and other Third Party libraries
+- [ng2-Pagination](https://github.com/michaelbromley/ng2-pagination)
+- [RXjs](https://github.com/Reactive-Extensions/RxJS)
+	- [Samples](http://restlet.com/blog/2016/04/12/interacting-efficiently-with-a-restful-service-with-angular2-and-rxjs-part-2/)
+	- [Samples 2](https://www.sitepoint.com/rxjs-functions-with-examples/)
 
+	
 ## Angular Cli
 
 This project was generated with [angular - cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.

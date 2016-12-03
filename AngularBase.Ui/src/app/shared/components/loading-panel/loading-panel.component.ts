@@ -1,15 +1,15 @@
 import {
-  Component, OnChanges, OnInit, Input,
+  Component, Input,
   trigger, state, animate, transition, style
 } from '@angular/core';
 
 @Component({
-  selector : 'loading-panel',
+  selector : 'app-loading-panel',
    animations: [
      trigger('visibilityChanged', [
        state('true' , style({ opacity: 1 })),
        state('false', style({ opacity: 0 })),
-       transition('* => *', animate('.6s'))
+       transition('* => *', animate('.7s'))
      ])
    ],
   templateUrl: './loading-panel.component.html',

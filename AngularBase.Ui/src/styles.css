@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  font-size: 14px;
+}
+
+.btn, .form-control {
+  height:auto;
+}
+
+.input-sm {
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  vertical-align:middle !important;
+}
+
+.no-padding-top {
+  padding-top: 0px;
+}
+.no-margin-top{
+  margin-top: 0px;
+}
+.no-padding-bottom {
+  padding-bottom: 0px;
+}
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
+.no-padding-top-bottom {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.no-margin-top-bottom {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*Smarty Overrides*/
+.fancy-form>i {
+  margin-top: -6px;
+  left:10px;
+}
+
+.fancy-form {
+  margin-bottom: 0px;
+  margin-right: -8px;
+}
+
+.fancy-form>input {
+  border: none;
+}

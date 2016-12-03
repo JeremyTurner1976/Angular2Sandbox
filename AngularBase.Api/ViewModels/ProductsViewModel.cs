@@ -20,28 +20,64 @@ namespace AngularBase.Api.ViewModels
 			AdventureWorks = adventureWorks;
 		}
 
-		public IQueryable<ListProduct> GetProducts()
-		{
-			var products = AdventureWorks.Products
 
+		internal int GetProductCount(PredicateObject predicateObject)
+		{
+			//TODO - Predicate object property creation needs filters and cleans
+			//This is the simplest case, will have to extend the where for each filter type
+			//Still leaning towards a SQL dynamic command using RowNumber
+			//and intelligent Safe scripts
+			string nameFilter = GetNameFilter(predicateObject);
+
+			return AdventureWorks.Products
 				.Join(AdventureWorks.ProductProductPhotoes,
-					 x => x.ProductID,
-					 y => y.ProductID,
-					 (x, y) => new { x, y })
+					x => x.ProductID,
+					y => y.ProductID,
+					(x, y) => new { x, y })
+				.Join(
+					AdventureWorks.ProductPhotoes,
+					a => a.y.ProductPhotoID,
+					b => b.ProductPhotoID,
+					(a, b) => new { a, b })
+				.Count(product => product.a.x.Name != null
+						&& product.a.x.ListPrice > 0
+						&& product.a.x.StandardCost > 0
+						&& product.b.ThumbNailPhoto != null
+						&& product.b.LargePhoto != null
+						&& !product.b.ThumbnailPhotoFileName.Contains(NoImageString)
+						&& !product.b.LargePhotoFileName.Contains(NoImageString)
+						&& (nameFilter == "" || product.a.x.Name.Contains(nameFilter)));
+		}
+
+		internal IQueryable<ListProduct> GetProducts(PredicateObject predicateObject)
+		{
+			//TODO - Predicate object property creation needs filters and cleans
+			//This is the simplest case, will have to extend the where for each filter type
+			//Still leaning towards a SQL dynamic command using RowNumber
+			//and intelligent Safe scripts
+			string nameFilter = GetNameFilter(predicateObject);
+
+			var products = AdventureWorks.Products
+				.Join(AdventureWorks.ProductProductPhotoes,
+					x => x.ProductID,
+					y => y.ProductID,
+					(x, y) => new { x, y })
 				.Join(AdventureWorks.ProductPhotoes,
 					a => a.y.ProductPhotoID,
 					b => b.ProductPhotoID,
 					(a, b) => new { a, b })
 				.Where(
 					product => product.a.x.Name != null
-					&& product.a.x.ListPrice > 0
-					&& product.a.x.StandardCost > 0
-					&& product.b.ThumbNailPhoto != null
-					&& product.b.LargePhoto != null
-					&& !product.b.ThumbnailPhotoFileName.Contains(NoImageString)
-					&& !product.b.LargePhotoFileName.Contains(NoImageString))
-				.Take(100)
+						&& product.a.x.ListPrice > 0
+						&& product.a.x.StandardCost > 0
+						&& product.b.ThumbNailPhoto != null
+						&& product.b.LargePhoto != null
+						&& !product.b.ThumbnailPhotoFileName.Contains(NoImageString)
+						&& !product.b.LargePhotoFileName.Contains(NoImageString)
+						&& (nameFilter == "" || product.a.x.Name.Contains(nameFilter)))
 				.OrderBy(product => product.a.x.SellStartDate)
+				.Skip(predicateObject.Skip)
+				.Take(predicateObject.Take)
 				.Select(product => new ListProduct()
 				{
 					ProductID = product.a.x.ProductID,
@@ -64,6 +100,12 @@ namespace AngularBase.Api.ViewModels
 			return products;
 		}
 
+		private string GetNameFilter(PredicateObject predicateObject)
+		{
+			return predicateObject.WhereObjects.Any()
+				? predicateObject.WhereObjects.First().ComparisonValue
+				: "";
+		}
 
 		public class ListProduct
 		{
@@ -102,7 +144,6 @@ namespace AngularBase.Api.ViewModels
 			public int? ProductModelID { get; set; }
 
 			public DateTime SellStartDate { get; set; }
-
 
 			public byte[] ProductThumbnail { get; set; }
 

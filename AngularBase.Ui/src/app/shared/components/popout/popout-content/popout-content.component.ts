@@ -5,7 +5,7 @@ import { Component, OnChanges, OnInit, Input, Output, EventEmitter } from '@angu
   templateUrl: './popout-content.component.html',
   styleUrls: ['./popout-content.component.css']
 })
-export class PopoutContentComponent implements OnInit, OnChanges {
+export class PopoutContentComponent {
 
   @Input() modalId: string;
   @Input() title: string = "New Title";
@@ -13,14 +13,6 @@ export class PopoutContentComponent implements OnInit, OnChanges {
   @Input() primaryActionMessage: string = "Save Changes";
 
   @Output() actionSelected: EventEmitter<boolean> =  new EventEmitter<boolean>();
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  ngOnChanges(){
-  }
 
   onPrimaryClick(){
     this.actionSelected.emit(true);

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
+import { Ng2PaginationModule }
+  from 'ng2-pagination';
 import { SharedModule } from
   '../../shared/shared.module';
 import { ProductsComponent } from
@@ -21,6 +23,7 @@ import { ProductsService } from
   ],
   imports: [
     SharedModule,
+    Ng2PaginationModule,
     RouterModule.forChild([
       { path: 'product/:id',
         canActivate: [ ProductGuard ],

@@ -1,9 +1,14 @@
 .panel-body {
   padding-bottom:0;
+  padding-top:1em;
 }
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-  vertical-align:middle !important;
+.pagination-holder {
+  margin-left: -30px;
+}
+
+.centered-search {
+  margin-top: -5px;
 }
 
 @media only screen and (min-width: 511px) {
@@ -28,7 +33,7 @@
 
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 455px) {
 
   .table > tbody > tr > td.xxs-hidden {
     display: none;
@@ -40,7 +45,7 @@
 }
 
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 380px) {
 
   .table > tbody > tr > td {
     font-size: .7em;
@@ -48,8 +53,15 @@
   th {
     font-size: .7em;
   }
-
 }
 
 
+@media only screen and (max-width: 305px) {
 
+  .table > tbody > tr > td.xxxs-hidden {
+    display: none;
+  }
+  th.xxxs-hidden {
+    display: none;
+  }
+}

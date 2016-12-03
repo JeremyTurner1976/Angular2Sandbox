@@ -38,5 +38,13 @@ namespace AngularBase.Api
 			Server.ClearError();
 		}
 
+		//protected void Application_BeginRequest()
+		//{
+		//	//http://stackoverflow.com/questions/27504256/mvc-web-api-no-access-control-allow-origin-header-is-present-on-the-requested
+		//	if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
+		//	{
+		//		Response.Flush();
+		//	}
+		//}
 	}
 }

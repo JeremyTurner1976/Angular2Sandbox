@@ -196,7 +196,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ViewModels\ApiResponse.cs" />
     <Compile Include="ViewModels\ApplicationConstants.cs" />
+    <Compile Include="ViewModels\PagedResponse.cs" />
+    <Compile Include="ViewModels\PredicateObject.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
