@@ -14,21 +14,21 @@ import { Product } from
 })
 
 export class ProductComponent implements OnInit {
-  productName : string = "Loading";
-  product: Product = new Product();
+  product: IProduct = new Product();
   productId : number = 0;
   productSubscription: any;
   productSaveSubscription: any;
   loading: boolean = true;
+  reviewMessage: string = "";
   errorMessage: string = "";
+
+  multiplesMockId = 0;
 
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
     private router: Router
   ) {
-    //TODO Want to know the page we came in at to redirect there?
-    //Singleton Component properties?
     this.productId = this.route.snapshot.params['id'];
   }
 
@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
             console.log(this.product);
             this.loading = false;
           },
-          (error: any) => console.log(error));
+          (error: any) => this.errorMessage = error);
   }
 
   ngOnDestroy() {
@@ -68,9 +68,14 @@ export class ProductComponent implements OnInit {
             this.errorMessage = "Unable to save product.";
           }
         },
-        (error: any) => {
-          console.log(error);
-          this.errorMessage = "Unable to save product.";
-        });
+        (error: any) => this.errorMessage = error);
+  }
+
+  onReviewClosed(saved){
+    if(saved){
+      this.multiplesMockId++;
+      this.product.productReviews.push({ productReviewID : this.multiplesMockId, message: this.reviewMessage, shortMessage: this.reviewMessage.substring(0,25) + "..." });
+      this.reviewMessage = "";
+    }
   }
 }

@@ -1985,6 +1985,26 @@
 			}
 		});
 
+		/** Textarea Character Limit
+		 *********************** **/
+		jQuery("textarea.text-count").on('keyup', function() {
+			var _t		= jQuery(this),
+				characters 	= this.value.length,
+				_limit	= _t.attr('data-maxlength') || 255;
+
+			if (characters > parseInt(_limit)) {
+        _t.val(this.value.substring(0, _limit));
+			} else {
+				var _data_info = _t.attr('data-info');
+				if(_data_info == '' || _data_info == undefined) {
+					var _infoContainer = _t.next('div');
+					jQuery('span', _infoContainer).text(characters + '/' + _limit);
+				} else {
+					jQuery('#' +_data_info).text(characters + '/' + _limit);
+				}
+			}
+		});
+
 	}
 
 

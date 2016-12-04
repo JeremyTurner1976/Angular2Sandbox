@@ -1,0 +1,29 @@
+.btn-group, .btn-group-vertical {
+  display: block;
+}
+
+@media only screen and (max-width: 480px) {
+  .col-xxs-12 {
+    width: 100%!important;
+  }
+}
+
+.form-control {
+  width: 100%;
+  height:auto;
+}
+
+.image-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+.data-container {
+  margin-top: -7px;
+}
+
+@media only screen and (max-width: 768px){
+  section div.row > div {
+    margin-bottom: 1em;
+  }
+}

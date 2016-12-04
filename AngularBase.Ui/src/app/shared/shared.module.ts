@@ -12,7 +12,9 @@ import { PopoutActionComponent }
 import { PopoutContentComponent }
   from './components/popout/popout-content/popout-content.component';
 
+import { LimitedDisplayPipe } from './pipes/limited-display.pipe';
 import { SourceBase64Pipe } from './pipes/source-base64.pipe';
+
 
 @NgModule({
   imports: [
@@ -27,6 +29,7 @@ import { SourceBase64Pipe } from './pipes/source-base64.pipe';
     LoadingPanelComponent,
     PopoutActionComponent,
     PopoutContentComponent,
+    LimitedDisplayPipe,
     SourceBase64Pipe
   ],
   declarations: [
@@ -34,6 +37,7 @@ import { SourceBase64Pipe } from './pipes/source-base64.pipe';
     LoadingPanelComponent,
     PopoutActionComponent,
     PopoutContentComponent,
+    LimitedDisplayPipe,
     SourceBase64Pipe
   ],
 })

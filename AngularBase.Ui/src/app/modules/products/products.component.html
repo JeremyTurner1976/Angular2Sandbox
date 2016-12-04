@@ -5,102 +5,106 @@
 	</div>
 
 	<div class="panel-body">
+    <div class="row">
+      <div class="container">
 
-  <div class="container">
+        <div class="col-xs-12 col-sm-4 centered-search">
+          <app-debounced-input
+              (valueChanged)="onValueChanged($event)"
+              throttleTimeInMilliseconds=1000
+              placeholder="Name Search"
+              class="form-control input-sm"
+              containerClass="col-xs-12 col-sm-4"
+              iconClass="fa fa-user"
+              tooltipLocation="top-left"
+              tooltipText="Search by name">
+          </app-debounced-input>
+        </div>
 
-    <div class="col-xs-12 col-sm-4 centered-search">
-      <app-debounced-input
-          (valueChanged)="onValueChanged($event)"
-          throttleTimeInMilliseconds=1000
-          placeholder="Name Search"
-          class="form-control input-sm"
-          containerClass="col-xs-12 col-sm-4"
-          iconClass="fa fa-user"
-          tooltipLocation="top-left"
-          tooltipText="Search for matching products">
-      </app-debounced-input>
+        <!--Css is based upon the rem property (html element)-->
+        <div class="col-xs-12 col-sm-8 text-center pagination-holder">
+          <pagination-controls id="products" (pageChange)="getPage($event)"
+            maxSize="9" directionLinks="true" autoHide="true">
+          </pagination-controls>
+        </div>
+
+        <div class="col-xs-12 no-padding-sides">
+          <div class='table-responsive'>
+
+            <h6  *ngIf='errorMessage.length' class="text-danger text-center">
+              <br/>
+              Unable to Load product data due to an error
+              <hr/>
+              {{errorMessage}}
+            </h6>
+
+            <table class="table table-striped table-hover table-bordered"
+              *ngIf='products && products.length'>
+              <thead>
+                <tr>
+                  <th class="h5 text-center xxxs-hidden">Image</th>
+                  <th class="h5">Name</th>
+                  <th class="h5 text-right">Cost</th>
+                  <th class="h5 text-right xxs-hidden">Retail</th>
+                  <th class="h5 text-right hidden-xs hidden-sm hidden-md">First Made</th>
+                  <th class="h5 text-center hidden-xs">Purchase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of products
+                  | paginate: { id: 'products', itemsPerPage: pageSize,
+                    currentPage: selectedPage, totalItems: totalRecords }">
+                  <td class="text-center xxxs-hidden image-column">
+                    <a [routerLink]="['/product', item.productID]">
+                      <img class="img-responsive" alt="Photo"
+                        [src]="item.productThumbnail | sourceBase64:'gif'"
+                        [title]="item.name">
+                    </a>
+                  </td>
+                  <td class="h6 name-column">
+
+                    <strong>
+                      <a [routerLink]="['/product', item.productID]">{{item.name}}</a>
+                    </strong>
+
+                  </td>
+                  <td class="h6 text-right hidden-xs">
+                    {{ item.standardCost | currency:"USD":true:"1.2-2" }}
+                  </td>
+                  <td class="h6 text-right visible-xs">
+
+                    <strong>
+                      <app-popout-action
+                        modalId="product-order-modal"
+                        (click)="onProductRowDetails(item)"
+                        actionMessage="{{item.standardCost | currency:'USD':true:'1.2-2'}}">
+                      </app-popout-action>
+                    </strong>
+
+                  </td>
+                  <td class="h6 text-right xxs-hidden">
+                    {{ item.listPrice | currency:"USD":true:"1.2-2" }}
+                  </td>
+                  <td class="h6 text-right hidden-xs hidden-sm hidden-md">
+                    {{ item.sellStartDate | date:"mediumDate" }}
+                  </td>
+                  <td class="text-center hidden-xs xs-hidden-button">
+
+                    <app-popout-action
+                      modalId="product-order-modal"
+                      (click)="onProductRowDetails(item)"
+                      actionMessage= "Order"
+                      actionClasses="btn btn-primary">
+                    </app-popout-action>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+      </div>
     </div>
-
-    <!--Css is based upon the rem property (html element)-->
-    <div class="col-xs-12 col-sm-8 text-center pagination-holder">
-      <pagination-controls id="products" (pageChange)="getPage($event)"
-        maxSize="9" directionLinks="true" autoHide="true">
-      </pagination-controls>
-    </div>
-
-  </div>
-
-
-  <div class='table-responsive'>
-
-    <h6  *ngIf='errorMessage.length' class="text-danger text-center">
-      <br/>
-      Unable to Load product data due to an error
-      <hr/>
-      {{errorMessage}}
-    </h6>
-
-    <table class="table table-striped table-hover table-bordered"
-      *ngIf='products && products.length'>
-      <thead>
-        <tr>
-          <th class="h5 text-center xxxs-hidden">Image</th>
-          <th class="h5">Name</th>
-          <th class="h5 text-right">Cost</th>
-          <th class="h5 text-right xxs-hidden">Retail</th>
-          <th class="h5 text-right hidden-xs hidden-sm hidden-md">First Made</th>
-          <th class="h5 text-center hidden-xs">Purchase</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of products
-          | paginate: { id: 'products', itemsPerPage: pageSize,
-            currentPage: selectedPage, totalItems: totalRecords }">
-          <td class="text-center xxxs-hidden">
-            <img class="img-responsive" alt="Photo"
-              [src]="item.productThumbnail | sourceBase64:'gif'"
-              [title]="item.name">
-          </td>
-          <td class="h6">
-
-            <strong>
-              <a [routerLink]="['/product', item.productID]">{{item.name}}</a>
-            </strong>
-
-          </td>
-          <td class="h6 text-right hidden-xs">
-            {{ item.standardCost | currency:"USD":true:"1.2-2" }}
-          </td>
-          <td class="h6 text-right visible-xs">
-
-            <strong>
-              <app-popout-action
-                modalId="product-order-modal"
-                (click)="onProductRowDetails(item)"
-                actionMessage="{{item.standardCost | currency:'USD':true:'1.2-2'}}">
-              </app-popout-action>
-            </strong>
-
-          </td>
-          <td class="h6 text-right xxs-hidden">
-            {{ item.listPrice | currency:"USD":true:"1.2-2" }}
-          </td>
-          <td class="h6 text-right hidden-xs hidden-sm hidden-md">
-            {{ item.sellStartDate | date:"mediumDate" }}
-          </td>
-          <td class="text-center hidden-xs xs-hidden-button">
-
-            <app-popout-action
-              modalId="product-order-modal"
-              (click)="onProductRowDetails(item)"
-              actionMessage= "Order"
-              actionClasses="btn btn-default btn-sm table-button">
-            </app-popout-action>
-
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </div>
@@ -117,6 +121,7 @@
       <strong>{{orderProduct.productID}} Order:</strong> {{ orderProduct.name }}
       <hr />
       Price: {{ orderProduct.standardCost | currency:"USD":true:"1.2-2" }}
+      <hr />
     </div>
   </div>
 

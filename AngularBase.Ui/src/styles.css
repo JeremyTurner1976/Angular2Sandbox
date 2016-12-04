@@ -4,8 +4,37 @@ html {
   font-size: 14px;
 }
 
-.btn, .form-control {
+
+::-webkit-input-placeholder {
+  font-size: 12px;
+  font-style:italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 12px;
+  font-style:italic;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+  font-size: 12px;
+  font-style:italic;
+}
+:-ms-input-placeholder {
+  font-size: 12px;
+  font-style:italic;
+}
+
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td,
+.table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  vertical-align:middle !important;
+}
+
+.form-control {
   height:auto;
+}
+
+.form-label {
+  font-weight:600;
 }
 
 .input-sm {
@@ -13,8 +42,49 @@ html {
   padding-bottom:3px;
 }
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-  vertical-align:middle !important;
+.datepicker-form {
+  padding-bottom: 4px;
+}
+
+a.btn.btn-xs {
+  line-height:22px;
+}
+
+.fancy-form>.select-arrow {
+	position: absolute;
+	top: 18x;
+	right: 1px;
+	left:auto;
+	width: 24px;
+	height: 24px;
+	color: #B5C1C7;
+	pointer-events: none;
+	z-index: 16;
+}
+
+.icon-shift-up{
+  margin-top:-9px !important;
+}
+
+.file-upload-input {
+  padding: 7px;
+}
+
+.input-attached-button {
+  padding-left:8px !important;
+  padding-right:8px !important;
+  margin-right: -4px;
+  margin-top: -4px;
+  border-radius: 0 3px 3px 0 !important;
+}
+
+
+
+
+
+
+.full-width {
+  width: 100%;
 }
 
 .no-padding-top {
@@ -38,3 +108,11 @@ html {
   margin-bottom: 0px;
 }
 
+.no-padding-sides {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.no-margin-sides {
+  margin-left: 0px;
+  margin-right: 0px;
+}

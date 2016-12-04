@@ -8,8 +8,6 @@ import { ProductsComponent } from
   './products.component';
 import { ProductComponent } from
   './product/product.component';
-import { ProductsFilterPipe } from
-  './pipes/products-filter.pipe';
 import { ProductGuard } from
   './guards/product-guard.service';
 import { ProductsService } from
@@ -19,7 +17,6 @@ import { ProductsService } from
   declarations: [
     ProductsComponent,
     ProductComponent,
-    ProductsFilterPipe
   ],
   imports: [
     SharedModule,

@@ -5,8 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SourceBase64Pipe implements PipeTransform {
 
-  transform(value: string, args?: string): any {
-    return "data:image/" + args + ";base64," + value;
+  transform(value: string, imageType: string): any {
+    return value
+      ? "data:image/" + imageType + ";base64," + value
+      : null;
   }
 
 }

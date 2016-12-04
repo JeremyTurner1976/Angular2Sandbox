@@ -33,7 +33,7 @@ namespace AngularBase.Api.Controllers
 
 		[HttpPost]
 		[Route("api/v0_0/pagedProducts")]
-		public PagedResponse<ProductsViewModel.ListProduct> GetProducts(PredicateObject predicateObject)
+		public PagedResponse<ListProduct> GetProducts(PredicateObject predicateObject)
 		{
 			try
 			{
@@ -47,7 +47,7 @@ namespace AngularBase.Api.Controllers
 				//Can use RowNumber Based SQL selects, ensure all API
 				//GetMultiples() and GetCounts() handle this
 
-				return new PagedResponse<ProductsViewModel.ListProduct>()
+				return new PagedResponse<ListProduct>()
 				{
 					Data = viewModel.GetProducts(predicateObject),
 					Total = viewModel.GetProductCount(predicateObject)
@@ -57,9 +57,9 @@ namespace AngularBase.Api.Controllers
 			{
 				var that = ex;
 				//TODO UIService for error handling and logging
-				return new PagedResponse<ProductsViewModel.ListProduct>()
+				return new PagedResponse<ListProduct>()
 				{
-					Data = new List<ProductsViewModel.ListProduct>().AsQueryable(),
+					Data = new List<ListProduct>().AsQueryable(),
 					Total = 0,
 					Error = ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace
 				};
@@ -67,19 +67,12 @@ namespace AngularBase.Api.Controllers
 		}
 
 		// GET: api/Products/5
-		[ResponseType(typeof(Product))]
+		[ResponseType(typeof(FullProduct))]
 		public IHttpActionResult GetProduct(int id)
 		{
 			//Product product = AdventureWorks.Products.Find(id);
 
-			Product product =
-				AdventureWorks.Products
-				.Include(x => x.ProductModel)
-				.Include(x => x.ProductDocument)
-				.Include(x => x.ProductProductPhotoes)
-				.Include(x => x.ProductReviews)
-				.FirstOrDefault(x => x.ProductID == id);
-
+			FullProduct product = viewModel.GetProduct(id);
 			if (product == null)
 			{
 				return NotFound();

@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ProductsFilterPipe } from './products-filter.pipe';
+import { LimitedDisplayPipe } from './limited-display.pipe';
 
-describe('Pipe: ProductsFilter', () => {
+describe('Pipe: LimitedDisplay', () => {
   it('create an instance', () => {
-    let pipe = new ProductsFilterPipe();
+    let pipe = new LimitedDisplayPipe();
     expect(pipe).toBeTruthy();
   });
 });
