@@ -42,6 +42,7 @@ export class ProductComponent implements OnInit {
             console.log("LOADED Full Details for Product: " +
               this.product.productID);
             console.log(this.product);
+            //$("a#toTop").click();
             this.loading = false;
           },
           (error: any) => this.errorMessage = error);

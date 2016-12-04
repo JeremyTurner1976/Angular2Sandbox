@@ -10,9 +10,9 @@ import {APP_BASE_HREF}
   from '@angular/common';
 
 //Shared Helpers
-import{ CommonModule } from
+import{ AppCommonModule } from
   './shared/common';
-import{ ExceptionsModule } from
+import{ AppExceptionsModule } from
   './shared/exceptions';
 
 //Features

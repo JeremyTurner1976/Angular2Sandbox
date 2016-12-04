@@ -1,3 +1,3 @@
-export class ExceptionsModule {
+export class AppExceptionsModule {
 
 }

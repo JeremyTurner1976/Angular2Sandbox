@@ -11920,9 +11920,9 @@ section.dark select>optgroup {
 .fancy-form>select {
 	display: block;
 	padding: 9px 10px;
-	-webkit-appearance: none;
+	/*-webkit-appearance: none;
 	-moz-appearance: none;
-	appearance: none;
+	appearance: none;*/
 	outline: none;
 	text-indent: 0.01px;
 	text-overflow: '';

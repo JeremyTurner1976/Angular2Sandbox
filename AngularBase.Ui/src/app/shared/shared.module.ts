@@ -12,6 +12,11 @@ import { PopoutActionComponent }
 import { PopoutContentComponent }
   from './components/popout/popout-content/popout-content.component';
 
+import { StyledDatepickerComponent }
+  from './components/styled-datepicker/styled-datepicker.component';
+import { StyledTextboxComponent } from
+  './components/styled-textbox/styled-textbox.component';
+
 import { LimitedDisplayPipe } from './pipes/limited-display.pipe';
 import { SourceBase64Pipe } from './pipes/source-base64.pipe';
 
@@ -29,6 +34,8 @@ import { SourceBase64Pipe } from './pipes/source-base64.pipe';
     LoadingPanelComponent,
     PopoutActionComponent,
     PopoutContentComponent,
+    StyledDatepickerComponent,
+    StyledTextboxComponent,
     LimitedDisplayPipe,
     SourceBase64Pipe
   ],
@@ -38,7 +45,9 @@ import { SourceBase64Pipe } from './pipes/source-base64.pipe';
     PopoutActionComponent,
     PopoutContentComponent,
     LimitedDisplayPipe,
-    SourceBase64Pipe
+    SourceBase64Pipe,
+    StyledDatepickerComponent,
+    StyledTextboxComponent
   ],
 })
 export class SharedModule { }

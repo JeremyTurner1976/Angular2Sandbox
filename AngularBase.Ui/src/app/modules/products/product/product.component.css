@@ -13,6 +13,10 @@
   height:auto;
 }
 
+.form-select {
+  padding:6px;
+}
+
 .image-container {
   max-width: 500px;
   margin: auto;

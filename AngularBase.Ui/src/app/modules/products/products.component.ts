@@ -1,4 +1,4 @@
-import { Component, OnInit }
+import { Component, OnInit, ViewChild }
   from '@angular/core';
 import {Ng2PaginationModule}
   from 'ng2-pagination';
@@ -11,6 +11,9 @@ import { IProduct } from
 import { Product } from
   '../../models/objects';
 
+import { DebouncedInputComponent } from
+'../../shared/components/debounced-input/debounced-input.component';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -18,7 +21,7 @@ import { Product } from
 })
 
 export class ProductsComponent implements OnInit {
-
+  @ViewChild(DebouncedInputComponent) searchComponent: DebouncedInputComponent;
   products: IProduct[] = [];
   orderProduct: IProduct = new Product();
 
@@ -109,9 +112,15 @@ export class ProductsComponent implements OnInit {
         (error: any) => this.errorMessage = error);
   }
 
-    onValueChanged(filterValue: string){filterValue
-      this.filter = filterValue;
-      this.getPage(1);
-    }
+  onValueChanged(filterValue: string){
+    this.filter = filterValue;
+    this.getPage(1);
+  }
+
+  clear(){
+    //NOTE: ViewChild Sample
+    this.searchComponent.clear();
+    this.getPage(1);
+  }
 }
 

@@ -82,16 +82,9 @@ namespace AngularBase.Api.ViewModels
 				{
 					ProductID = product.a.x.ProductID,
 					Name = product.a.x.Name,
-					ProductNumber = product.a.x.ProductNumber,
-					Color = product.a.x.Color,
 					StandardCost = product.a.x.StandardCost,
 					ListPrice = product.a.x.ListPrice,
-					DaysToManufacture = product.a.x.DaysToManufacture,
-					ProductLine = product.a.x.ProductLine,
-					Class = product.a.x.Class,
-					Style = product.a.x.Style,
 					ProductSubcategoryID = product.a.x.ProductSubcategoryID,
-					ProductModelID = product.a.x.ProductModelID,
 					SellStartDate = product.a.x.SellStartDate,
 					ProductThumbnail = product.b.ThumbNailPhoto,
 					ProductThumbnailFileName = product.b.ThumbnailPhotoFileName
@@ -134,7 +127,6 @@ namespace AngularBase.Api.ViewModels
 					Class = product.a.x.Class,
 					Style = product.a.x.Style,
 					ProductSubcategoryID = product.a.x.ProductSubcategoryID,
-					ProductModelID = product.a.x.ProductModelID,
 					SellStartDate = product.a.x.SellStartDate,
 
 					ProductImage = product.b.LargePhoto,
@@ -144,7 +136,6 @@ namespace AngularBase.Api.ViewModels
 	}
 }
 
-
 public class ListProduct
 {
 	public int ProductID { get; set; }
@@ -153,18 +144,29 @@ public class ListProduct
 	[StringLength(50)]
 	public string Name { get; set; }
 
+	[Column(TypeName = "money")]
+	public decimal StandardCost { get; set; }
+
+	[Column(TypeName = "money")]
+	public decimal ListPrice { get; set; }
+
+	public int? ProductSubcategoryID { get; set; }
+
+	public byte[] ProductThumbnail { get; set; }
+
+	public string ProductThumbnailFileName { get; set; }
+
+	public DateTime SellStartDate { get; set; }
+}
+
+public class FullProduct : ListProduct
+{
 	[Required]
 	[StringLength(25)]
 	public string ProductNumber { get; set; }
 
 	[StringLength(15)]
 	public string Color { get; set; }
-
-	[Column(TypeName = "money")]
-	public decimal StandardCost { get; set; }
-
-	[Column(TypeName = "money")]
-	public decimal ListPrice { get; set; }
 
 	public int DaysToManufacture { get; set; }
 
@@ -177,21 +179,17 @@ public class ListProduct
 	[StringLength(2)]
 	public string Style { get; set; }
 
-	public int? ProductSubcategoryID { get; set; }
+	/*Not a ui property*/
+	public DateTime ModifiedDate { get; set; }
 
-	public int? ProductModelID { get; set; }
-
-	public DateTime SellStartDate { get; set; }
-
-	public byte[] ProductThumbnail { get; set; }
-
-	public string ProductThumbnailFileName { get; set; }
-}
-
-public class FullProduct : Product
-{
 	public byte[] ProductImage { get; set; }
 
 	public string ProductImageFileName { get; set; }
+
+	public virtual ProductDocument ProductDocument { get; set; } = new ProductDocument();
+
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+	public virtual ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();
+
 
 }

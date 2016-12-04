@@ -1,0 +1,3 @@
+.fancy-form>input:focus + .fancy-datepicker-tooltip {
+  margin-top:-12px;
+}

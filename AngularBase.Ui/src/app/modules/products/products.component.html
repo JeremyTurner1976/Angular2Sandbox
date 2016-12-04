@@ -9,16 +9,21 @@
       <div class="container">
 
         <div class="col-xs-12 col-sm-4 centered-search">
-          <app-debounced-input
-              (valueChanged)="onValueChanged($event)"
-              throttleTimeInMilliseconds=1000
-              placeholder="Name Search"
-              class="form-control input-sm"
-              containerClass="col-xs-12 col-sm-4"
-              iconClass="fa fa-user"
-              tooltipLocation="top-left"
-              tooltipText="Search by name">
-          </app-debounced-input>
+          <div class="col-xs-9 no-padding-sides">
+            <app-debounced-input
+                (valueChanged)="onValueChanged($event)"
+                throttleTimeInMilliseconds=1000
+                placeholder="Name Search"
+                class="form-control input-sm"
+                containerClass="col-xs-12 col-sm-4"
+                iconClass="fa fa-user"
+                tooltipLocation="top-left"
+                tooltipText="Search by name">
+            </app-debounced-input>
+          </div>
+          <div class="col-xs-3 no-padding-sides">
+            <a class="btn btn-sm btn-default search-button" (click)="clear()">Clear</a>
+          </div>
         </div>
 
         <!--Css is based upon the rem property (html element)-->
@@ -94,7 +99,7 @@
                       modalId="product-order-modal"
                       (click)="onProductRowDetails(item)"
                       actionMessage= "Order"
-                      actionClasses="btn btn-primary">
+                      actionClasses="btn btn-primary btn-sm table-button">
                     </app-popout-action>
 
                   </td>

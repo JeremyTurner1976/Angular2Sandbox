@@ -31,12 +31,16 @@ export class DebouncedInputComponent {
       <any>this.debounceStorage.asObservable()
          .debounceTime(this.throttleTimeInMilliseconds)
           .distinctUntilChanged();
-
   }
 
   onValueChanged(inputValue: string){
     console.log(inputValue);
     this.debounceStorage.next(inputValue);
+  }
+
+  clear(){
+    this.value = "";
+    this.debounceStorage.next("");
   }
 }
 

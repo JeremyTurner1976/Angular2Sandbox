@@ -7,26 +7,26 @@
   <!--
   //List Product
   productID: number = 0;
-  name: string = "";
-  productNumber: string = "";
+  name="";
+  productNumber="";
   sellStartDate: Date;
   standardCost: number = 0;
   listPrice: number = 0;
-  productThumbnail: string = "";
-  productThumbnailFileName: string = "";
+  productThumbnail="";
+  productThumbnailFileName="";
 
   //Full Product
-  class: string = "";
-  color: string = "";
+  class="";
+  color="";
   daysToManufacture: number = 0;
-  productDocument: string = "";
-  productLine: string = "";
+  productDocument="";
+  productLine="";
   productReviews: any[] = [];
-  productSubcategory: string = "";
+  productSubcategory="";
   productSubcategoryID:  number;
-  style: string = "";
-  productImage: string = "";
-  productImageFileName: string = "";
+  style="";
+  productImage="";
+  productImageFileName="";
   -->
 
   <div class="panel-body">
@@ -45,22 +45,33 @@
         <div class="col-xs-12 col-sm-6 col-lg-4">
           <label class="form-label">Product Documents</label>
           <div class="fancy-form fancy-form-select">
-            <select class="form-control">
-              <option value="">{{product.productReviews}}</option>
-              <option value="1">Document 1</option>
-              <option value="2">Document 2</option>
-              <option value="3">Document 3</option>
+            <select class="form-control form-select">
+              <option class="" value=""></option>
+              <option value="1">Document</option>
+              <option value="2">Image</option>
+              <option value="3">Thumbnail</option>
             </select>
             <i class="fa fa-arrow-down select-arrow"></i>
           </div>
           <hr />
-          <div class="fancy-file-upload fancy-file-primary">
+          <div class="fancy-file-upload fancy-file-default no-margin-bottom">
             <i class="fa fa-upload"></i>
             <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
-            <input type="text" class="form-control" placeholder="no file selected" readonly="" />
-            <span class="button input-attached-button">Attach File</span>
+            <input type="text" class="form-control file-name-input" placeholder="File location" readonly="" />
+            <span class="button input-attached-button">Document</span>
           </div>
-          <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+          <div class="fancy-file-upload fancy-file-primary no-margin-top-bottom">
+            <i class="fa fa-upload"></i>
+            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
+            <input type="text" class="form-control" style="overflow:hidden" placeholder="File location" readonly="" />
+            <span class="button input-attached-button">Image</span>
+          </div>
+          <div class="fancy-file-upload fancy-file-info no-margin-top">
+            <i class="fa fa-upload"></i>
+            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
+            <input type="text" class="form-control" placeholder="File location" readonly="" />
+            <span class="button input-attached-button">Thumbnail</span>
+          </div>
         </div>
 
         <div class="col-xs-12 col-lg-4">
@@ -68,7 +79,7 @@
           <div class="btn-group-vertical">
             <a class="btn btn-default" role="button"
               *ngFor="let item of product.productReviews
-              | limitedDisplay: 3:'productReviewID':'number':'desc'">
+              | limitedDisplay: 4:'productReviewID':'number':'desc'">
               <i class="fa fa-user"></i>
               <span>
                 {{item.shortMessage}}
@@ -89,140 +100,138 @@
 
     <div class="row">
       <div class="container data-container">
-
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Name</label>
-            <div class="fancy-form">
-              <i class="fa fa-building"></i>
-              <input type="text" [(ngModel)]="product.name" class="form-control" placeholder="Name">
-              <span class="fancy-tooltip top-left">
-                <em>The product's name</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-building"
+              label="Name"
+              placeholder="Name"
+              tooltipText="The product's name"
+              [(value)]="product.name"
+              (valueChange)="product.name=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Standard Cost</label>
-            <div class="fancy-form">
-              <i class="fa fa-dollar"></i>
-              <input type="text" [(ngModel)]="product.standardCost" class="form-control" placeholder="Price per unit">
-              <span class="fancy-tooltip top-left">
-                <em>The manufacturing cost per unit</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-dollar"
+              label="Standard Cost"
+              placeholder="Price per unit"
+              tooltipText="The manufacturing cost per unit"
+              [(value)]="product.standardCost"
+              (valueChange)="product.standardCost=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Suggested Retail Price</label>
-            <div class="fancy-form">
-              <i class="fa fa-money"></i>
-              <input type="text" [(ngModel)]="product.listPrice" class="form-control" placeholder="Market average">
-              <span class="fancy-tooltip top-left">
-                <em>The standard market price for suppliers</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-money"
+              label="Suggested Retail Price"
+              placeholder="Market average"
+              tooltipText="The standard market price at retail locations"
+              [(value)]="product.listPrice"
+              (valueChange)="product.listPrice=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4 datepicker-form">
-            <label class="form-label">Sell Start Date</label>
-            <div class="fancy-form ">
-              <i class="fa fa-calendar"></i>
-            	<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
-              <span class="fancy-tooltip top-left">
-                <em>The date this item has/will reach market</em>
-              </span>
-            </div>
+          <app-styled-datepicker
+              format="mm/dd/yyyy"
+              label="Manufacturing Start Date"
+              tooltipText="The date this item has/will reach market"
+              [(value)]="product.sellStartDate"
+              (valueChange)="product.sellStartDate=$event">
+          </app-styled-datepicker>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Days to Manufacture</label>
-            <div class="fancy-form">
-              <i class="fa fa-dashboard"></i>
-              <input type="text" [(ngModel)]="product.daysToManufacture" class="form-control" placeholder="Number of Days">
-              <span class="fancy-tooltip top-left">
-                <em>The average length of time between order and shipping dates</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-dashboard"
+              label="Days to Manufacture"
+              placeholder="Number of Days"
+              tooltipText="The average length of time between order and shipping dates"
+              [(value)]="product.daysToManufacture"
+              (valueChange)="product.daysToManufacture=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Color</label>
-            <div class="fancy-form">
-              <i class="icon-picture icon-shift-up"></i>
-              <input type="text" [(ngModel)]="product.color" class="form-control" placeholder="Red">
-              <span class="fancy-tooltip top-left">
-                <em>The product's color</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="icon-shift-down icon-picture"
+              label="Color"
+              placeholder="Red"
+              tooltipText="The product's color"
+              [(value)]="product.color"
+              (valueChange)="product.color=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Style</label>
-            <div class="fancy-form">
-              <i class="fa fa-building"></i>
-              <input type="text" [(ngModel)]="product.style" class="form-control" placeholder="Style">
-              <span class="fancy-tooltip top-left">
-                <em>The product's style</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-building"
+              label="Style"
+              placeholder="Style"
+              tooltipText="The product's style"
+              [(value)]="product.style"
+              (valueChange)="product.style=$event">
+          </app-styled-textbox>
         </div>
 
-        <!--
-          productSubcategory: string = "";
+       <!--
+          productSubcategory="";
           productSubcategoryID:  number;
         -->
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Category ID</label>
-            <div class="fancy-form">
-              <i class="fa fa-building"></i>
-              <input type="text" [(ngModel)]="product.productSubcategoryID" class="form-control" placeholder="Category">
-              <span class="fancy-tooltip top-left">
-                <em>The product's category</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-building"
+              label="Category"
+              placeholder="Category"
+              tooltipText="The product's category"
+              [(value)]="product.productSubcategoryID"
+              (valueChange)="product.productSubcategoryID=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Class</label>
-            <div class="fancy-form">
-              <i class="fa fa-building"></i>
-              <input type="text" [(ngModel)]="product.class" class="form-control" placeholder="Class">
-              <span class="fancy-tooltip top-left">
-                <em>The product's class</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-building"
+              label="Class"
+              placeholder="Class"
+              tooltipText="The product's class"
+              [(value)]="product.class"
+              (valueChange)="product.class=$event">
+          </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-            <label class="form-label">Line</label>
-            <div class="fancy-form">
-              <i class="fa fa-building"></i>
-              <input type="text" [(ngModel)]="product.productLine" class="form-control" placeholder="Style">
-              <span class="fancy-tooltip top-left">
-                <em>The product Line</em>
-              </span>
-            </div>
+          <app-styled-textbox
+              iconClass="fa fa-nested fa-building"
+              label="Line"
+              placeholder="Line"
+              tooltipText="The product' line"
+              [(value)]="product.productLine"
+              (valueChange)="product.productLine=$event">
+          </app-styled-textbox>
         </div>
-
-        <h6  *ngIf='errorMessage.length' class="text-danger text-center">
-          <hr/>
-          Unable to Load product data due to an error
-          <hr/>
-          {{errorMessage}}
-        </h6>
 
       </div>
     </div>
+
+    <h6  *ngIf='errorMessage.length' class="text-danger text-center">
+      <hr/>
+      Unable to Load product data due to an error
+      <hr/>
+      {{errorMessage}}
+    </h6>
 
   </div>
 
   <br />
 
   <div class="panel-footer">
-    <a class="btn btn-primary btn-xs">Save Data</a>
-    <a (click)="onBack()" class="btn btn-info btn-xs">
+    <a (click)="onBack()" class="btn btn-default btn-xs">
       <i class="glyphicon glyphicon-chevron-left"></i> Back
     </a>
+    <a class="btn btn-primary btn-xs">Save Data</a>
   </div>
 
 </div>
