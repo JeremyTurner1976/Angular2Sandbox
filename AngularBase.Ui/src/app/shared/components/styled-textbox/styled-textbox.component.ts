@@ -10,6 +10,21 @@ import { FormsModule }
   styleUrls: ['./styled-textbox.component.css']
 })
 
+//NOTE Property based sets:
+  //[attr.disabled]="isDisabled"
+  //[style.visible]="isVisible"
+  //[class.IsValid]="isValid"
+
+//For Multiples:
+  //[ngStyles]="setStyles()"
+  //[ngClass]="setClasses()"
+
+//TODO
+//attr.aria-label
+//attr.aria-for
+//etc..
+
+
 
 export class StyledTextboxComponent {
   @Input() class: string = "form-control";

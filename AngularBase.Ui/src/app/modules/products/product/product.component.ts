@@ -22,6 +22,12 @@ export class ProductComponent implements OnInit {
   reviewMessage: string = "";
   errorMessage: string = "";
 
+  //display properties
+  documentOpacity: number = 1;
+  imageOpacity: number = 1;
+  productDocumentsOpacity: number = 1;
+  thumbnailOpacity: number = 1;
+
   multiplesMockId = 0;
 
   constructor(

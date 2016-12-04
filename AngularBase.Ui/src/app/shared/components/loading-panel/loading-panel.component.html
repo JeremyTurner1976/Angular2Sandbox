@@ -1,4 +1,5 @@
-<div class="preloader" id="preloader" [@visibilityChanged]="isVisible"
+<div class="preloader" id="preloader"
+  [@visibilityChanged]="isVisible"
   (@visibilityChanged.start)="animationStarted($event)"
   (@visibilityChanged.done)="animationDone($event)">
 

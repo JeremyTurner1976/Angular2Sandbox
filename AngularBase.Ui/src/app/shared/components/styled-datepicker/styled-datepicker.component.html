@@ -1,6 +1,7 @@
 <label class="form-label">{{label}}</label>
 <div class="fancy-form ">
   <i class="fa fa-calendar"></i>
+
   <input type="text"
     class="{{class}} datepicker"
     [placeholder]="format"
@@ -9,7 +10,9 @@
     data-RTL="false"
     [(ngModel)]="inputValue"
     (ngModelChange)="onValueChanged($event)">
+
   <span class="fancy-tooltip fancy-datepicker-tooltip top-left">
     <em>{{tooltipText}}</em>
   </span>
+
 </div>

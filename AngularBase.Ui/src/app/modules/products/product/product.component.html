@@ -44,33 +44,45 @@
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
           <label class="form-label">Product Documents</label>
-          <div class="fancy-form fancy-form-select">
+          <div class="fancy-form fancy-form-select"
+          (mouseenter)="productDocumentsOpacity=.6"
+          (mouseleave)="productDocumentsOpacity=1">
             <select class="form-control form-select">
-              <option class="" value=""></option>
+              <option value=""></option>
               <option value="1">Document</option>
               <option value="2">Image</option>
               <option value="3">Thumbnail</option>
             </select>
-            <i class="fa fa-arrow-down select-arrow"></i>
+            <i class="fa fa-arrow-down select-arrow"
+               [style.opacity]="productDocumentsOpacity"></i>
           </div>
           <hr />
-          <div class="fancy-file-upload fancy-file-default no-margin-bottom">
+          <div class="fancy-file-upload fancy-file-default no-margin-bottom"
+            (mouseenter)="documentOpacity=.8"
+            (mouseleave)="documentOpacity=1">
             <i class="fa fa-upload"></i>
             <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
             <input type="text" class="form-control file-name-input" placeholder="File location" readonly="" />
-            <span class="button input-attached-button">Document</span>
+            <span class="button input-attached-button"
+            [style.opacity]="documentOpacity">Document</span>
           </div>
-          <div class="fancy-file-upload fancy-file-primary no-margin-top-bottom">
+          <div class="fancy-file-upload fancy-file-primary no-margin-top-bottom"
+            (mouseenter)="imageOpacity=.8"
+            (mouseleave)="imageOpacity=1">
             <i class="fa fa-upload"></i>
             <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
             <input type="text" class="form-control" style="overflow:hidden" placeholder="File location" readonly="" />
-            <span class="button input-attached-button">Image</span>
+            <span class="button input-attached-button"
+            [style.opacity]="imageOpacity">Image</span>
           </div>
-          <div class="fancy-file-upload fancy-file-info no-margin-top">
+          <div class="fancy-file-upload fancy-file-info no-margin-top"
+            (mouseenter)="thumbnailOpacity=.8"
+            (mouseleave)="thumbnailOpacity=1">
             <i class="fa fa-upload"></i>
             <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
             <input type="text" class="form-control" placeholder="File location" readonly="" />
-            <span class="button input-attached-button">Thumbnail</span>
+            <span class="button input-attached-button"
+            [style.opacity]="thumbnailOpacity">Thumbnail</span>
           </div>
         </div>
 
@@ -196,7 +208,7 @@
               iconClass="fa fa-nested fa-building"
               label="Line"
               placeholder="Line"
-              tooltipText="The product' line"
+              tooltipText="The product line"
               [(value)]="product.productLine"
               (valueChange)="product.productLine=$event">
           </app-styled-textbox>
@@ -205,11 +217,11 @@
       </div>
     </div>
 
-    <h6  *ngIf='errorMessage.length' class="text-danger text-center">
+    <h6  *ngIf="errorMessage.length" class="text-danger text-center">
       <hr/>
       Unable to Load product data due to an error
       <hr/>
-      {{errorMessage}}
+      <pre>{{errorMessage}}</pre>
     </h6>
 
   </div>
@@ -252,7 +264,6 @@
 
     </div>
   </div>
-
 </app-popout-content>
 
 <app-loading-panel [isVisible]="loading">

@@ -37,15 +37,40 @@ namespace AngularBase.Api.Controllers
 		{
 			try
 			{
-				//NOTE: I used to send a stringified json object to handle this
+				//NOTE: I will send a stringified json object to handle this
 				//and a factory to build the predicate set and sql query 
-				//and params based on object property types from that string
+				//both in C# and in Angular 2, this will create a dynamic query
+				//from those params based on object property types from the object itself
 				//	It is very straightforward using reflection to ensure 
 				//	conditional values are types expected
 				//	and wheres and orderbys point to properties of the object
-				//	and no issues arise from Little Bobby Tables (string checks)
-				//Can use RowNumber Based SQL selects, ensure all API
-				//GetMultiples() and GetCounts() handle this
+				//	and no issues arise from Little Bobby Tables (string checks ;drop tables)
+				//	-This will be the first public version of that API, 
+				//   previous had 0 vulnerabilities in penetration testing
+
+				//Will use RowNumber Based SQL selects
+				//Handled by Entity: Insert<T>(Object), Update<T>(Object), Delete<T>(ObjectId)
+				//Accepts the Predicate Object: Get[Object](), Get[Object]s(), and Get[Object]Count()
+					//This only handles very simple joins
+
+				//Predicate object property creation needs filters and cleans
+				//This is the simplest case, will have to extend the where for each filter type
+				//Still leaning towards a SQL dynamic command using RowNumber
+				//and intelligent Safe scripts
+
+				//NOTE: On this rebuild also add a front end string [] for each property
+				//I want returned from the full list (can clean up partial class selection)
+
+				//Working on matching breeze api again but for RxJs
+				/*
+				 Breeze client side code:
+				 return breeze.EntityQuery.from('TodoLists')
+					  .select('name','id','propertyA', ...)
+					  .where('Title', 'startsWith', 'T')
+					  .take(3).orderBy('title')
+					  .using(manager).execute()
+					  .then(success).catch(failure)
+				*/
 
 				return new PagedResponse<ListProduct>()
 				{

@@ -1,8 +1,10 @@
 <div class="fancy-form">
-  <i class="{{iconClass}}"></i>
+  <i [class]="iconClass"></i>
 
-  <input type="text" class="{{class}}"
-    placeholder="{{placeholder}}" [(ngModel)]="value"
+  <input type="text"
+    [class]="class"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
     (ngModelChange)="onValueChanged($event)" />
 
   <span class="fancy-tooltip {{tooltipLocation}}">

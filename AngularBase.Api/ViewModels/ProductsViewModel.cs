@@ -23,10 +23,6 @@ namespace AngularBase.Api.ViewModels
 
 		internal int GetProductCount(PredicateObject predicateObject)
 		{
-			//TODO - Predicate object property creation needs filters and cleans
-			//This is the simplest case, will have to extend the where for each filter type
-			//Still leaning towards a SQL dynamic command using RowNumber
-			//and intelligent Safe scripts
 			string nameFilter = GetNameFilter(predicateObject);
 
 			return AdventureWorks.Products
@@ -51,10 +47,6 @@ namespace AngularBase.Api.ViewModels
 
 		internal IQueryable<ListProduct> GetProducts(PredicateObject predicateObject)
 		{
-			//TODO - Predicate object property creation needs filters and cleans
-			//This is the simplest case, will have to extend the where for each filter type
-			//Still leaning towards a SQL dynamic command using RowNumber
-			//and intelligent Safe scripts
 			string nameFilter = GetNameFilter(predicateObject);
 
 			var products = AdventureWorks.Products
