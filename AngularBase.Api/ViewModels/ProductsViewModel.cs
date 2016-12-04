@@ -124,7 +124,7 @@ namespace AngularBase.Api.ViewModels
 					ListPrice = product.a.x.ListPrice,
 					DaysToManufacture = product.a.x.DaysToManufacture,
 					ProductLine = product.a.x.ProductLine,
-					Class = product.a.x.Class,
+					//Class = product.a.x.Class,
 					Style = product.a.x.Style,
 					ProductSubcategoryID = product.a.x.ProductSubcategoryID,
 					SellStartDate = product.a.x.SellStartDate,
@@ -173,8 +173,8 @@ public class FullProduct : ListProduct
 	[StringLength(2)]
 	public string ProductLine { get; set; }
 
-	[StringLength(2)]
-	public string Class { get; set; }
+	//[StringLength(2)]
+	//public string Class { get; set; }
 
 	[StringLength(2)]
 	public string Style { get; set; }
@@ -186,7 +186,7 @@ public class FullProduct : ListProduct
 
 	public string ProductImageFileName { get; set; }
 
-	public virtual ProductDocument ProductDocument { get; set; } = new ProductDocument();
+	public virtual ProductDocument ProductDocument { get; set; }
 
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 	public virtual ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();

@@ -10,7 +10,7 @@ export interface IProduct {
   productThumbnailFileName: string;
 
   //Full Product
-  class: string;
+  //class: string;
   color: string;
   daysToManufacture: number;
   productDocument: any;

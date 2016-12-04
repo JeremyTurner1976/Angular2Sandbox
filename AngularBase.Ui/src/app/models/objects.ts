@@ -13,7 +13,7 @@ export class Product implements IProduct {
 
   //Full Product
   productNumber: string = "";
-  class: string = "";
+  //class: string = "";
   color: string = "";
   daysToManufacture: number = 0;
   productDocument: any = {};
