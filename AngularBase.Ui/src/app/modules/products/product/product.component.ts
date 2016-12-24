@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, keyframes,
+  trigger, state, animate, transition, style } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from
   '../services/products.service';
@@ -10,7 +11,21 @@ import { Product } from
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  animations: [
+    trigger('flyListInOut', [
+        state('active', style({ height: 'auto', opacity: 1, transform: 'translateX(0)' })),
+        state('inactive', style({ height: '0px', opacity: 0, transform: 'translateX(5%)' })),
+        transition('active => inactive', animate('200ms ease-in')),
+        transition('inactive => active', animate('200ms 200ms ease-out'))
+    ]),
+    trigger('flyReviewInOut', [
+        state('inactive',style({ height: 'auto', opacity: 1, transform: 'translateX(0)' })),
+        state('active', style({ height: '0px', opacity: 0, transform: 'translateX(5%)' })),
+        transition('inactive => active', animate('200ms ease-in')),
+        transition('active => inactive', animate('200ms 200ms ease-out'))
+    ]),
+  ]
 })
 
 export class ProductComponent implements OnInit {
@@ -28,7 +43,8 @@ export class ProductComponent implements OnInit {
   productDocumentsOpacity: number = 1;
   thumbnailOpacity: number = 1;
 
-  multiplesMockId = 0;
+  multiplesMockId: number = 0;
+  reviewListMode: string = 'active';
 
   constructor(
     private route: ActivatedRoute,
@@ -78,11 +94,25 @@ export class ProductComponent implements OnInit {
         (error: any) => this.errorMessage = error);
   }
 
-  onReviewClosed(saved){
-    if(saved){
-      this.multiplesMockId++;
-      this.product.productReviews.push({ productReviewID : this.multiplesMockId, message: this.reviewMessage, shortMessage: this.reviewMessage.substring(0,25) + "..." });
-      this.reviewMessage = "";
-    }
+  addReview(){
+    this.reviewListMode = 'inactive';
   }
+
+  onReviewSelected(review){
+    this.reviewMessage = review.message;
+    this.reviewListMode = 'inactive';
+  }
+
+  saveReview(){
+    this.multiplesMockId++;
+    this.product.productReviews.push({ productReviewID : this.multiplesMockId, message: this.reviewMessage, shortMessage: this.reviewMessage.substring(0,25) + "..." });
+    this.reviewMessage = "";
+    this.reviewListMode = 'active';
+  }
+
+  cancelReview(){
+    this.reviewMessage = "";
+    this.reviewListMode = 'active';
+  }
+
 }

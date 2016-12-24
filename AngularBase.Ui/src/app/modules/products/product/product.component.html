@@ -36,73 +36,88 @@
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
           <div class="image-container">
-            <img class="img-responsive image" alt="Photo"
-              [src]="product.productImage | sourceBase64:'gif'"
-              [title]="product.name">
+            <img class="img-responsive image" alt="Photo" [src]="product.productImage | sourceBase64:'gif'" [title]="product.name">
           </div>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
           <label class="form-label">Product Documents</label>
-          <div class="fancy-form fancy-form-select"
-          (mouseenter)="productDocumentsOpacity=.6"
-          (mouseleave)="productDocumentsOpacity=1">
+          <div class="fancy-form fancy-form-select" (mouseenter)="productDocumentsOpacity=.6" (mouseleave)="productDocumentsOpacity=1">
             <select class="form-control form-select">
               <option value=""></option>
               <option value="1">Document</option>
               <option value="2">Image</option>
               <option value="3">Thumbnail</option>
             </select>
-            <i class="fa fa-arrow-down select-arrow"
-               [style.opacity]="productDocumentsOpacity"></i>
+            <i class="fa fa-arrow-down select-arrow" [style.opacity]="productDocumentsOpacity"></i>
           </div>
           <hr />
-          <div class="fancy-file-upload fancy-file-default no-margin-bottom"
-            (mouseenter)="documentOpacity=.8"
-            (mouseleave)="documentOpacity=1">
+          <div class="fancy-file-upload fancy-file-default no-margin-bottom" (mouseenter)="documentOpacity=.8" (mouseleave)="documentOpacity=1">
             <i class="fa fa-upload"></i>
-            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
+            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);"
+            />
             <input type="text" class="form-control file-name-input" placeholder="File location" readonly="" />
-            <span class="button input-attached-button"
-            [style.opacity]="documentOpacity">Document</span>
+            <span class="button input-attached-button" [style.opacity]="documentOpacity">Document</span>
           </div>
-          <div class="fancy-file-upload fancy-file-primary no-margin-top-bottom"
-            (mouseenter)="imageOpacity=.8"
-            (mouseleave)="imageOpacity=1">
+          <div class="fancy-file-upload fancy-file-primary no-margin-top-bottom" (mouseenter)="imageOpacity=.8" (mouseleave)="imageOpacity=1">
             <i class="fa fa-upload"></i>
-            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
+            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);"
+            />
             <input type="text" class="form-control" style="overflow:hidden" placeholder="File location" readonly="" />
-            <span class="button input-attached-button"
-            [style.opacity]="imageOpacity">Image</span>
+            <span class="button input-attached-button" [style.opacity]="imageOpacity">Image</span>
           </div>
-          <div class="fancy-file-upload fancy-file-info no-margin-top"
-            (mouseenter)="thumbnailOpacity=.8"
-            (mouseleave)="thumbnailOpacity=1">
+          <div class="fancy-file-upload fancy-file-info no-margin-top" (mouseenter)="thumbnailOpacity=.8" (mouseleave)="thumbnailOpacity=1">
             <i class="fa fa-upload"></i>
-            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
+            <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);"
+            />
             <input type="text" class="form-control" placeholder="File location" readonly="" />
-            <span class="button input-attached-button"
-            [style.opacity]="thumbnailOpacity">Thumbnail</span>
+            <span class="button input-attached-button" [style.opacity]="thumbnailOpacity">Thumbnail</span>
           </div>
         </div>
 
         <div class="col-xs-12 col-lg-4">
-          <label class="form-label">Product Reviews</label>
-          <div class="btn-group-vertical">
-            <a class="btn btn-default" role="button"
-              *ngFor="let item of product.productReviews
-              | limitedDisplay: 4:'productReviewID':'number':'desc'">
-              <i class="fa fa-user"></i>
-              <span>
+
+          <div [@flyListInOut]="reviewListMode">
+            <label class="form-label">Product Reviews</label>
+            <div class="btn-group-vertical">
+              <a class="btn btn-default" role="button" *ngFor="let item of product.productReviews
+                | limitedDisplay: 4:'productReviewID':'number':'desc'" (click)="onReviewSelected(item)">
+                <i class="fa fa-user"></i>
                 {{item.shortMessage}}
-              </span>
-            </a>
-            <app-popout-action
-              modalId="product-review-modal"
-              actionMessage= "Add a Review"
-              actionClasses="btn btn-success full-width">
-            </app-popout-action>
+              </a>
+              <a class="btn btn-primary" role="button" (click)="addReview()">
+                Add New Review
+              </a>
+            </div>
           </div>
+
+          <div [@flyReviewInOut]="reviewListMode">
+            <div class="panel panel-default" style="margin-bottom:0">
+              <div class="panel-body">
+                <strong>Product Review</strong>
+                <a class="btn btn-primary btn-xs pull-right" role="button" (click)="saveReview()">
+                  <i class="fa fa-user"></i>
+                  Save Review
+                </a>
+                <a  class="btn btn-danger btn-xs pull-right" role="button" (click)="cancelReview()">
+                  Cancel
+                </a>
+                <hr />
+                <div class="fancy-form">
+                  <textarea rows="5" class="form-control text-count" data-maxlength="800" data-info="textarea-words-info" placeholder="Tell us what you think"
+                    [(ngModel)]="reviewMessage"></textarea>
+                  <i class="fa fa-comments"></i>
+                  <span class="fancy-hint size-11 text-muted">
+                      <strong>800 characters allowed</strong>
+                      <span class="pull-right">
+                        <span id="textarea-words-info">0/800</span> Characters
+                  </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -113,113 +128,68 @@
     <div class="row">
       <div class="container data-container">
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-building"
-              label="Name"
-              placeholder="Name"
-              tooltipText="The product's name"
-              [(value)]="product.name"
-              (valueChange)="product.name=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-building" label="Name" placeholder="Name" tooltipText="The product's name"
+            [(value)]="product.name" (valueChange)="product.name=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-dollar"
-              label="Standard Cost"
-              placeholder="Price per unit"
-              tooltipText="The manufacturing cost per unit"
-              [(value)]="product.standardCost"
-              (valueChange)="product.standardCost=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-dollar" label="Standard Cost" placeholder="Price per unit" tooltipText="The manufacturing cost per unit"
+            [(value)]="product.standardCost" (valueChange)="product.standardCost=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-money"
-              label="Suggested Retail Price"
-              placeholder="Market average"
-              tooltipText="The standard market price at retail locations"
-              [(value)]="product.listPrice"
-              (valueChange)="product.listPrice=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-money" label="Suggested Retail Price" placeholder="Market average" tooltipText="The standard market price at retail locations"
+            [(value)]="product.listPrice" (valueChange)="product.listPrice=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4 datepicker-form">
-          <app-styled-datepicker
-              format="mm/dd/yyyy"
-              label="Manufacturing Start Date"
-              tooltipText="The date this item has/will reach market"
-              [(value)]="product.sellStartDate"
-              (valueChange)="product.sellStartDate=$event">
+          <app-styled-datepicker format="mm/dd/yyyy" label="Manufacturing Start Date" tooltipText="The date this item has/will reach market"
+            [(value)]="product.sellStartDate" (valueChange)="product.sellStartDate=$event">
           </app-styled-datepicker>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-dashboard"
-              label="Days to Manufacture"
-              placeholder="Number of Days"
-              tooltipText="The average length of time between order and shipping dates"
-              [(value)]="product.daysToManufacture"
-              (valueChange)="product.daysToManufacture=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-dashboard" label="Days to Manufacture" placeholder="Number of Days" tooltipText="The average length of time between order and shipping dates"
+            [(value)]="product.daysToManufacture" (valueChange)="product.daysToManufacture=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="icon-shift-down icon-picture"
-              label="Color"
-              placeholder="Red"
-              tooltipText="The product's color"
-              [(value)]="product.color"
-              (valueChange)="product.color=$event">
+          <app-styled-textbox iconClass="icon-shift-down icon-picture" label="Color" placeholder="Red" tooltipText="The product's color"
+            [(value)]="product.color" (valueChange)="product.color=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-building"
-              label="Style"
-              placeholder="Style"
-              tooltipText="The product's style"
-              [(value)]="product.style"
-              (valueChange)="product.style=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-building" label="Style" placeholder="Style" tooltipText="The product's style"
+            [(value)]="product.style" (valueChange)="product.style=$event">
           </app-styled-textbox>
         </div>
 
-       <!--
+        <!--
           productSubcategory="";
           productSubcategoryID:  number;
         -->
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-building"
-              label="Category"
-              placeholder="Category"
-              tooltipText="The product's category"
-              [(value)]="product.productSubcategoryID"
-              (valueChange)="product.productSubcategoryID=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-building" label="Category" placeholder="Category" tooltipText="The product's category"
+            [(value)]="product.productSubcategoryID" (valueChange)="product.productSubcategoryID=$event">
           </app-styled-textbox>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-lg-4">
-          <app-styled-textbox
-              iconClass="fa fa-nested fa-building"
-              label="Line"
-              placeholder="Line"
-              tooltipText="The product line"
-              [(value)]="product.productLine"
-              (valueChange)="product.productLine=$event">
+          <app-styled-textbox iconClass="fa fa-nested fa-building" label="Line" placeholder="Line" tooltipText="The product line" [(value)]="product.productLine"
+            (valueChange)="product.productLine=$event">
           </app-styled-textbox>
         </div>
 
       </div>
     </div>
 
-    <h6  *ngIf="errorMessage.length" class="text-danger text-center">
-      <hr/>
-      Unable to Load product data due to an error
+    <h6 *ngIf="errorMessage.length" class="text-danger text-center">
+      <hr/> Unable to Load product data due to an error
       <hr/>
       <pre>{{errorMessage}}</pre>
     </h6>
@@ -238,11 +208,7 @@
 </div>
 
 <!--MODALS-->
-<app-popout-content
-  modalId="product-review-modal"
-  title="Send a Product Review"
-  primaryActionMessage="Send Review"
-  (actionSelected)="onReviewClosed($event)">
+<app-popout-content modalId="product-review-modal" title="Send a Product Review" primaryActionMessage="Send Review" (actionSelected)="onReviewClosed($event)">
 
   <div class="panel panel-default">
     <div class="panel-body">
@@ -250,15 +216,14 @@
       <strong>{{ product.name }}</strong>
       <hr />
       <div class="fancy-form">
-        <textarea rows="5" class="form-control text-count" data-maxlength="800"
-        data-info="textarea-words-info" placeholder="Tell us what you think"
-        [(ngModel)]="reviewMessage"></textarea>
+        <textarea rows="5" class="form-control text-count" data-maxlength="800" data-info="textarea-words-info" placeholder="Tell us what you think"
+          [(ngModel)]="reviewMessage"></textarea>
         <i class="fa fa-comments"></i>
         <span class="fancy-hint size-11 text-muted">
           <strong>800 characters allowed</strong>
           <span class="pull-right">
             <span id="textarea-words-info">0/800</span> Characters
-          </span>
+        </span>
         </span>
       </div>
 
@@ -268,5 +233,3 @@
 
 <app-loading-panel [isVisible]="loading">
 </app-loading-panel>
-
-

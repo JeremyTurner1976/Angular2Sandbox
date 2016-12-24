@@ -5,13 +5,13 @@ import {
 
 @Component({
   selector : 'app-loading-panel',
-   animations: [
-     trigger('visibilityChanged', [
-       state('true' , style({ opacity: 1 })),
-       state('false', style({ opacity: 0 })),
-       transition('* => *', animate('.7s'))
-     ])
-   ],
+  animations: [
+    trigger('visibilityChanged', [
+      state('true' , style({ opacity: 1 })),
+      state('false', style({ opacity: 0 })),
+      transition('* => *', animate('.7s'))
+    ])
+  ],
   templateUrl: './loading-panel.component.html',
   styleUrls: ['./loading-panel.component.css']
 })
